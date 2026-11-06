@@ -1,4 +1,17 @@
-[  
+[  	
+	{
+        "title": "Hotfix: New version",
+        "version": "v1.5.32",
+        "description": "Added 1 new version of Eaglercraft",
+        "date": "November 6th, 2026",
+        "icon": "/mc-icons/poplar-log.png",
+        "type": "hotfix",
+        "notes": [
+            "Added the 26.3 port of Eaglercraft to the launcher",
+            "Updated the background",
+            "Removed herobrine"
+        ]
+	}, 
 	{
         "title": "Hotfix: New versions",
         "version": "v1.5.31",

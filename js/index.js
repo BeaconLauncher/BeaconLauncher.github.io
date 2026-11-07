@@ -664,7 +664,7 @@ function generatedownloads() {
             patchnote.className = "patchnote";
             patchnote.setAttribute('data-download-type', note.type);
             patchnote.addEventListener("click", () => {
-				const link = document.createElement('a');
+				const link = document.createElement('a'); 
 				link.href = note.link + "index.html";
 				link.download = note.title + " " + note.version + '.html'; // Forces download
 				document.body.appendChild(link);

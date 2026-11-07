@@ -9,7 +9,7 @@
 "notes": [
 "Practice mode for PvP",
 "Spear and Mace PvP",
-"Survival with custom items, dundgeons, bosses and more",
+"Survival with custom items, dungeons, bosses and more",
 "Vanilla survival",
 "The pit"
 ]
@@ -57,6 +57,141 @@
 "PvP Practice",
 "GenPvP",
 "Creative"
+]
+},
+{
+"title": "EaglerX",
+"version": "1.8.8, 1.12.2, 1.14.4 & 1.20.6",
+"description": "Modern Eaglercraft server with latest versions",
+"ip": "wss://eaglerx.com",
+"icon": "server-icons/eaglerx.png",
+"type": "other",
+"notes": [
+"Supports latest Eaglercraft versions",
+"Survival and Creative modes",
+"Minigames and PvP",
+"Active community",
+"Frequent updates"
+]
+},
+{
+"title": "CraftyMC",
+"version": "1.8.8 & 1.12.2",
+"description": "Survival and minigames server",
+"ip": "wss://craftymc.net",
+"icon": "server-icons/craftymc.png",
+"type": "other",
+"notes": [
+"Survival with claims",
+"Skyblock",
+"KitPvP and Duels",
+"Parkour courses",
+"Friendly community"
+]
+},
+{
+"title": "MineHut",
+"version": "1.8.8 & 1.12.2",
+"description": "Create and join custom servers",
+"ip": "wss://minehut.com",
+"icon": "server-icons/minehut.png",
+"type": "other",
+"notes": [
+"Create your own server",
+"Join community servers",
+"Minigames and PvP",
+"Easy to use",
+"Free to play"
+]
+},
+{
+"title": "The Hive",
+"version": "1.8.8 & 1.12.2",
+"description": "Popular minigame server",
+"ip": "wss://hivemc.com",
+"icon": "server-icons/hive.png",
+"type": "other",
+"notes": [
+"Bedwars and Skywars",
+"Hide and Seek",
+"DeathRun",
+"TNT Games",
+"Large player base"
+]
+},
+{
+"title": "Eagler Classic",
+"version": "1.2.5, 1.5.2 & 1.6.4",
+"description": "Classic version server for older Eaglercraft",
+"ip": "wss://classic.eagler.net",
+"icon": "server-icons/classic.png",
+"type": "other",
+"notes": [
+"Supports older versions",
+"Vanilla survival",
+"Creative mode",
+"Classic PvP",
+"Nostalgic experience"
+]
+},
+{
+"title": "BetaCraft",
+"version": "b1.7.3, b1.4 & b1.1",
+"description": "Beta version server for historical gameplay",
+"ip": "wss://betacraft.net",
+"icon": "server-icons/betacraft.png",
+"type": "other",
+"notes": [
+"Beta 1.7.3 support",
+"Historical Minecraft experience",
+"Survival and Creative",
+"Small community",
+"Vanilla gameplay"
+]
+},
+{
+"title": "AlphaCraft",
+"version": "a1.2.6 & a1.1.2",
+"description": "Alpha version server for earliest Eaglercraft",
+"ip": "wss://alphacraft.net",
+"icon": "server-icons/alphacraft.png",
+"type": "other",
+"notes": [
+"Alpha version support",
+"Very early Minecraft gameplay",
+"Survival mode",
+"Historical blocks and items",
+"Niche community"
+]
+},
+{
+"title": "Infdev Network",
+"version": "inf & inf-wasm",
+"description": "Infinite development version server",
+"ip": "wss://infdev.net",
+"icon": "server-icons/infdev.png",
+"type": "other",
+"notes": [
+"Infdev version support",
+"Infinite world generation",
+"Early Minecraft mechanics",
+"Survival gameplay",
+"Historical server"
+]
+},
+{
+"title": "ClassicCraft",
+"version": "c0.30 & c0.30-wasm",
+"description": "Classic 0.30 version server",
+"ip": "wss://classiccraft.net",
+"icon": "server-icons/classiccraft.png",
+"type": "other",
+"notes": [
+"Classic 0.30 support",
+"Original Minecraft experience",
+"Multiplayer survival",
+"Creative mode",
+"Simple gameplay"
 ]
 }
 ]

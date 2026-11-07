@@ -130,7 +130,7 @@
 "description": "Ultimate Eaglercraft 1.12.2 PvP experience",
 "ip": "wss://galacticpvp.eagler.host",
 "icon": "server-icons/galacticpvp.png",
-"type": "other",
+"type": "1.12.2",
 "notes": [
 "Lifesteal Survival",
 "Player Economy",

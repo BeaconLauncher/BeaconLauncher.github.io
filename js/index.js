@@ -1108,7 +1108,6 @@ function resetHeaderSelected() {
     document.getElementById('mods').style.display = "none";
     document.getElementById('faq').style.display = "none";
     document.getElementById('installations').style.display = "none";
-    document.getElementById('downloads').style.display = "none";
     document.getElementById('patchNotes').style.display = "none";
     document.getElementById('credits').style.display = "none";
     document.getElementById('contributors').style.display = "none";

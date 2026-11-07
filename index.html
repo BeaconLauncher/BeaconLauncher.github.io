@@ -84,7 +84,7 @@
                 <p class="eaglercraftText"> EAGLERCRAFT : </p>
                 <p>Servers </p>
             </div>
-        </div>
+		</div>
         <div id="gtabs5" class="sidebarOptions sidebarBottom" onclick="creditsmenu()">
             <img src="./assets/images/sidebar/m-credits.png"><div class="gTabsText"><p> Credits</p></div>
         </div>
@@ -108,6 +108,7 @@
                     <li id="header9" class="headerButtons" onclick="generalsettingsheader()">General</li>
                     <li id="header10" class="headerButtons" onclick="aboutsettingsheader()">About</li>
                     <li id="header11" class="headerButtons" onclick="serversheader()">Server List</li>
+                    <li id="header12" class="headerButtons" onclick="downloadsheader()">Downloads</li>
                 </ul>
         </div>
 
@@ -135,8 +136,8 @@
         <div id="patchNotes">
             <div style="padding: 2vh 3vw 7vh;">
                 <p class="bolded patchnotes-title">Versions</p>
-                <div class="versionscontainer">
-                    <input class="versionBox" type="checkbox" onchange="sortnote('game')" checked><p>Game Releases</p><input class="versionBox" type="checkbox" onchange="sortnote('site')" checked><p>Site Releases</p><input class="versionBox" type="checkbox" onchange="sortnote('hotfix')" checked><p>Hotfixes</p>
+                <div id="versionscontainer" class="versionscontainer">
+                    <input class="versionBox" type="checkbox" onchange="sortnote('game')" checked><p id="gameselect">Game Releases</p><input class="versionBox" type="checkbox" onchange="sortnote('site')" checked><p id="siteselect" >Site Releases</p><input id="hotfixselect" class="versionBox" type="checkbox" onchange="sortnote('hotfix')" checked><p id="p">Hotfixes</p>
                 </div>
                 <hr>
                 <div id="patchnotesbox"></div>
@@ -146,7 +147,7 @@
             <div style="padding: 2vh 3vw 7vh;">
                 <p class="bolded servers-title"></p>
                 <div class="versionscontainerserver">
-                    <input class="versionBox" type="checkbox" onchange="sortserver('1.8.8')" checked><p>1.8.8</p><input class="versionBox" type="checkbox" onchange="sortserver('1.12.2')" checked><p>1.12.2</p><input class="versionBox" type="checkbox" onchange="sortserver('other')" checked><p>1.8.8 & 1.12.2</p>
+                    <input class="versionBox" type="checkbox" onchange="sortserver('1.8.8')" checked><p>1.8.8</p><input class="versionBox" type="checkbox" onchange="sortserver('1.12.2')" checked><p>1.12.2</p><input class="versionBox" type="checkbox" onchange="sortserver('other')" checked><p>Other</p>
                 </div>
                 <hr>
                 <div id="serversbox"></div>

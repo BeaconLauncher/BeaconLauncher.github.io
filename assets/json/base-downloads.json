@@ -1,0 +1,30 @@
+[   		
+	{
+       "title": "Latest release WASM",
+       "version": "26.3-beta-wasm",
+       "type": "wasm",
+       "icon": "./assets/images/mc-icons/poplar-log-wasm.png",
+       "link": "./mc/26.3-wasm/"
+    }, 
+	{
+       "title": "Previous release WASM",
+       "version": "26.2-beta-wasm",
+       "type": "wasm",
+       "icon": "./assets/images/mc-icons/sulfur-cube-wasm.png",
+       "link": "./mc/26.2-wasm/"
+    },
+    {
+       "title": "Eaglercraft 1.20.6 WASM",
+       "version": "1.20.6-pre-wasm",
+       "type": "wasm",
+       "icon": "./assets/images/icons/eaglymc-wasm.png",
+       "link": "./mc/1.20.6-wasm/"
+    },
+    {
+       "title": "Eaglercraft 1.14.4 WASM",
+       "version": "1.14.4-u1-wasm",
+       "type": "wasm",
+       "icon": "./assets/images/mc-icons/pillager-head-wasm.png",
+       "link": "./mc/1.14.4-wasm/"
+    }
+]

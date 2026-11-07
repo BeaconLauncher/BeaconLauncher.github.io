@@ -1,23 +1,70 @@
 [
 {
+"title": "Clans SMP",
+"version": "1.8.8, 1.12.2 & 1.20.6",
+"description": "Eaglercraft server with PvP, Economy, and Survival",
+"ip": "wss://Clans.eagler.host",
+"icon": "server-icons/clans.png",
+"type": "other",
+"notes": [
+"PvP focused",
+"Economy system",
+"Survival gameplay",
+"Active community",
+"Fun environment"
+]
+},
+{
+"title": "BagelSMP",
+"version": "1.8.8, 1.12.2, 1.14.4, 1.20.6 & 26.3",
+"description": "Grind to get loot and fight others. Joinable on any version.",
+"ip": "wss://top.bagelsmp.com",
+"icon": "server-icons/bagelsmp.png",
+"type": "other",
+"notes": [
+"Economy system",
+"Survival gameplay",
+"PvP combat",
+"Loot grinding",
+"All versions supported"
+]
+},
+{
+"title": "ArchyverseV",
+"version": "1.8.8, 1.12.2, 1.14.4, 1.20.6, 26.2 & 26.3",
+"description": "Top Eaglercraft server with Survival, Lifesteal, KitPvP, Duels, and more",
+"ip": "wss://mc.archyverse.org",
+"icon": "server-icons/archyverse.png",
+"type": "other",
+"notes": [
+"Unblocked for schools",
+"Supports 1.8.8 to 26.2",
+"Survival mode",
+"Lifesteal 1.21",
+"KitPvP and Duels",
+"Mace & Crystal PvP"
+]
+},
+{
 "title": "Voidsent MC",
-"version": "1.8.8 & 1.12.2",
-"description": "A PvP server with lots of fun gamemodes!",
+"version": "1.8.8, 1.12.2 & 1.20.6",
+"description": "The #1 Eaglercraft Server with Practice, Factions, Survival, and MMORPG",
 "ip": "wss://mc.voidsent.net",
 "icon": "server-icons/voidsent.png",
 "type": "other",
 "notes": [
-"Practice mode for PvP",
-"Spear and Mace PvP",
-"Survival with custom items, dundgeons, bosses and more",
-"Vanilla survival",
-"The pit"
+"1.21 Practice",
+"Factions",
+"Survival",
+"MMORPG elements",
+"Custom Kit Spear and Mace Practice",
+"Cross platform and cracked friendly"
 ]
 },
 {
 "title": "KypticMC",
 "version": "1.8.8 & 1.12.2",
-"description": "A PvP minigame server with advanced anticheat",
+"description": "High-quality Minecraft network with advanced anticheat",
 "ip": "wss://krypticmc.net",
 "icon": "server-icons/krypticmc.png",
 "type": "other",
@@ -26,7 +73,8 @@
 "No Pay-To-Win",
 "KitPvP and PvP Practice",
 "Bedwars & Skywars",
-"Lifesteal, Hardcore and Survival"
+"Lifesteal, Hardcore and Survival",
+"Prison and Practice modes"
 ]
 },
 {
@@ -37,11 +85,104 @@
 "icon": "server-icons/archmc.png",
 "type": "other",
 "notes": [
-"~400 player always online",
+"~400 players always online",
 "Bedwars",
 "Duels and KitPvP",
 "Survival and Lifesteal",
-"Creative"
+"Creative mode"
+]
+},
+{
+"title": "Vanilla Network",
+"version": "1.8.8, 1.12.2 & 1.20.6",
+"description": "Eaglercraft server with 1.8 Factions PvP & 1.21 Survival",
+"ip": "wss://vanillamc.org",
+"icon": "server-icons/vanilla.png",
+"type": "other",
+"notes": [
+"1.8 Factions PvP",
+"1.21 Survival",
+"Custom Enchantments",
+"KoTH (King of the Hill)",
+"Coinflip and Blackjack",
+"Player-driven economy"
+]
+},
+{
+"title": "CarrotCraft Network",
+"version": "1.8.8, 1.12.2, 1.14.4, 1.20.6, 26.2 & 26.3",
+"description": "Modern Eaglercraft Network with Survival, Skyblock, Pitfall, and Practice",
+"ip": "wss://eagler.carrot-craft.org",
+"icon": "server-icons/carrotcraft.png",
+"type": "other",
+"notes": [
+"Survival mode",
+"Skyblock",
+"Pitfall",
+"Practice PvP",
+"Java, Eaglercraft, and Bedrock supported",
+"Versions 1.8.x to 26.x"
+]
+},
+{
+"title": "GalacticPVP",
+"version": "1.12.2",
+"description": "Ultimate Eaglercraft 1.12.2 PvP experience",
+"ip": "wss://galacticpvp.eagler.host",
+"icon": "server-icons/galacticpvp.png",
+"type": "other",
+"notes": [
+"Lifesteal Survival",
+"Player Economy",
+"Custom GUI Shop",
+"Kits",
+"Teams & Alliances"
+]
+},
+{
+"title": "SkeletonMC",
+"version": "1.12.2, 1.14.4, 1.20.6, 26.2 & 26.3",
+"description": "The Best Factions Server with custom features",
+"ip": "wss://eagler.skeletonmc.com",
+"icon": "server-icons/skeletonmc.png",
+"type": "other",
+"notes": [
+"Custom Enchants",
+"Dungeons",
+"KOTH",
+"Weekly Faction Payouts",
+"Custom Sets",
+"Play unblocked 1.12 to 26.3"
+]
+},
+{
+"title": "JAXXMC",
+"version": "1.8.8, 1.12.2 & 1.20.6",
+"description": "Community focused Minecraft server",
+"ip": "wss://jaxxmc.eagler.host",
+"icon": "server-icons/jaxxmc.png",
+"type": "other",
+"notes": [
+"Build and explore",
+"Compete in events",
+"Make your mark",
+"Friendly community",
+"Fun gameplay"
+]
+},
+{
+"title": "HeartSMP",
+"version": "1.8.8, 1.12.2, 1.14.4, 1.20.6 & 26.3",
+"description": "LifeSteal & Creative server",
+"ip": "wss://play.heartsmp.net",
+"icon": "server-icons/heartsmp.png",
+"type": "other",
+"notes": [
+"LifeSteal: Steal hearts, raid, & PvP",
+"Creative: WorldEdit, Free Plots",
+"Zero limits",
+"Versions 1.7 to Latest",
+"Active community"
 ]
 },
 {
@@ -56,7 +197,7 @@
 "Survival, Anarchy and Lifesteal",
 "PvP Practice",
 "GenPvP",
-"Creative"
+"Creative mode"
 ]
 }
 ]

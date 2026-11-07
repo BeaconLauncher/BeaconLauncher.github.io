@@ -52,7 +52,7 @@
        "version": "1.19-1.0.8-wasm",
        "icon": "./assets/images/icons/norshare.png",
        "link": "./mc/eclipse/",
-       "active": true,
+       "active": false,
        "download": false
     },
     {

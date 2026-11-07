@@ -1068,10 +1068,9 @@ hr {
     margin-bottom: 0.5vw;
 }
 
-#download {
-	position: absolute;
-	transform: translateX(300px);
-	top: 46.5px;
+#settingsbuttons {
+	align-items: center;
+	padding: 1vw;
 }
 
 .settingoption p {

@@ -26,5 +26,40 @@
        "type": "wasm",
        "icon": "./assets/images/mc-icons/pillager-head-wasm.png",
        "link": "./mc/1.14.4-wasm/"
+    },    
+    {
+       "title": "Eaglercraft 1.12.2",
+       "version": "1.12.2-u2",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/grass.png",
+       "link": "./mc/1.12.2-offline/"
+    },
+    {
+       "title": "Eaglercraft 1.12.2 WASM",
+       "version": "1.12.2-u2-wasm",
+       "type": "wasm",
+       "icon": "./assets/images/mc-icons/grass-wasm.png",
+       "link": "./mc/1.12.2-wasm-offline/"
+    },
+    {
+       "title": "Eaglercraft 1.8.8",
+       "version": "1.8.8-u53",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/dirt.png",
+       "link": "./mc/1.8.8-offline/"
+    },
+    {
+       "title": "Eaglercraft 1.8.8 WASM",
+       "version": "1.8.8-u53-wasm",
+       "type": "wasm",
+       "icon": "./assets/images/mc-icons/dirt-wasm.png",
+       "link": "./mc/1.8.8-wasm-offline/"
+    },
+    {
+       "title": "Eaglercraft 1.5.2",
+       "version": "1.5.2-sp2.01",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/hopper.png",
+       "link": "./mc/1.5.2-offline/"
     }
 ]

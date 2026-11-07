@@ -582,6 +582,7 @@ function generatefaqs() {
 const notes = document.getElementById("patchnotesbox");
 const externalmenu = document.getElementById("externalmenu");
 function generatenotes() {
+	document.getElementById("p").parentElement.innerHTML = "<input class=\"versionBox\" type=\"checkbox\" onchange=\"sortnote('game')\" checked><p id=\"gameselect\">Game Releases</p><input class=\"versionBox\" type=\"checkbox\" onchange=\"sortnote('site')\" checked><p id=\"siteselect\" >Site Releases</p><input id=\"hotfixselect\" class=\"versionBox\" type=\"checkbox\" onchange=\"sortnote('hotfix')\" checked><p id=\"p\">Hotfixes</p>";
     fetch("./assets/json/patchnotes.json").then((response) => response.json()).then((data) => {
         data.forEach((note) => {
             const patchnote = document.createElement("div");
@@ -642,6 +643,61 @@ function generatenotes() {
         if (hotfixnote == false) { document.querySelectorAll('[data-note-type="hotfix"]').forEach(element => {element.style.display = 'none'})};
     });
 };
+
+function generatedownloads() {
+	let jsonedition = "";
+    if (launcher === "./assets/json/base.json") {
+        jsonedition = "./assets/json/base-downloads.json";
+    } else {
+        jsonedition = "./assets/json/modded-downloads.json";
+    }
+    const jssort = document.getElementById("gameselect");
+    const wasmsort = document.getElementById("siteselect");
+    const removesort = document.getElementById("hotfixselect");
+    const jsparent = jssort.parentElement;
+    jsparent.innerHTML =  "<input class=\"versionBox\" type=\"checkbox\" onchange=\"sortdownload('js')\" checked><p id=\"gameselect\">Javascript</p><input class=\"versionBox\" type=\"checkbox\" onchange=\"sortdownload('wasm')\" checked><p id=\"siteselect\" >WASM-GC</p><input id=\"hotfixselect\" style=\"display: none\" class=\"versionBox\" type=\"checkbox\" onchange=\"sortnote('hotfix')\" checked><p id=\"p\" style=\"display: none;\">Hotfixes</p>";
+    document.getElementById("p").style.display = "none";
+    removesort.style.display = "none";
+    fetch(jsonedition).then((response) => response.json()).then((data) => {
+        data.forEach((note) => {
+            const patchnote = document.createElement("div");
+            patchnote.className = "patchnote";
+            patchnote.setAttribute('data-download-type', note.type);
+            patchnote.addEventListener("click", () => {
+				const link = document.createElement('a');
+				link.href = note.link + "index.html";
+				link.download = note.title + " " + note.version + '.html'; // Forces download
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+            });
+
+            const patchnoteimg = document.createElement("img");
+            patchnoteimg.src = note.icon;
+
+            const patchnotedetails = document.createElement("div");
+            patchnotedetails.className = "bolded patchnotedetails";
+            const notedetailtitle = document.createElement("p");
+            notedetailtitle.innerHTML = note.title;
+            const notedetailversion = document.createElement("p");
+            notedetailversion.innerHTML = note.version;
+            const downloadlink = document.createElement("a")
+            downloadlink.href = note.link
+            downloadlink.download = note.title + " " + note.version
+
+            patchnotedetails.appendChild(notedetailtitle);
+            patchnotedetails.appendChild(notedetailversion);
+            patchnote.appendChild(patchnoteimg);
+            patchnote.appendChild(patchnotedetails);
+            notes.appendChild(patchnote);
+            patchnoteimg.appendChild(downloadlink);
+        });
+        if (wasmdownload == false) { document.querySelectorAll('[data-download-type="wasm"]').forEach(element => {element.style.display = 'none'})};
+        if (jsdownload == false) { document.querySelectorAll('[data-download-type="js"]').forEach(element => {element.style.display = 'none'})};
+    });
+};
+
+
 const servers = document.getElementById("serversbox");
 function generateservers() {
 	while (servers.firstChild) {servers.removeChild(servers.firstChild)};
@@ -774,6 +830,20 @@ function sortnote(type) {
     };
 }
 
+let jsdownload = true
+let wasmdownload = true
+function sortdownload(type) {
+	console.log(type)
+    if (type === "wasm") {
+        if (wasmdownload == true) { document.querySelectorAll('[data-download-type="wasm"]').forEach(element => {element.style.display = 'none';}); wasmdownload = false;}
+        else if (wasmdownload == false) { document.querySelectorAll('[data-download-type="wasm"]').forEach(element => {element.style.display = 'flex';}); wasmdownload = true;}
+    };
+    if (type === "js") {
+        if (jsdownload == true) { document.querySelectorAll('[data-download-type="js"]').forEach(element => {element.style.display = 'none';}); jsdownload = false; }
+        else if (jsdownload == false) { document.querySelectorAll('[data-download-type="js"]').forEach(element => {element.style.display = 'flex';}); jsdownload = true; }
+    };
+}
+
 
 let onepointeight = onepointtwelve = other = true;
 function sortserver(type) {
@@ -796,6 +866,10 @@ function closenotescreen() {
     while (externalmenu.firstChild) {externalmenu.removeChild(externalmenu.firstChild)};
 }
 function closeserverscreen() {
+    externalmenu.style.display = "none";
+    while (externalmenu.firstChild) {externalmenu.removeChild(externalmenu.firstChild)};
+}
+function closedownloadsscreen() {
     externalmenu.style.display = "none";
     while (externalmenu.firstChild) {externalmenu.removeChild(externalmenu.firstChild)};
 }
@@ -864,6 +938,7 @@ function eaglercontrols(){
     document.getElementById('header9').style.display = 'none';
     document.getElementById('header10').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
+    document.getElementById('header12').style.display = 'none';
     document.getElementById('gtabs4').classList.add('selected');
     playheader();
 }
@@ -881,6 +956,7 @@ function serversmenu(){
     document.getElementById('header8').style.display = 'none';
     document.getElementById('header9').style.display = 'none';
     document.getElementById('header10').style.display = 'none';
+    document.getElementById('header12').style.display = 'none';
     document.getElementById('gtabs7').classList.add('selected');
     serversheader();
 }
@@ -896,6 +972,7 @@ function creditsmenu(){
     document.getElementById('header6').style.display = 'none';
     document.getElementById('header9').style.display = 'none';
     document.getElementById('header10').style.display = 'none';
+    document.getElementById('header12').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
     document.getElementById('gtabs5').classList.add('selected');
     contributorsheader();
@@ -911,6 +988,7 @@ function settingsmenu(){
     document.getElementById('header5').style.display = 'none';
     document.getElementById('header6').style.display = 'none';
     document.getElementById('header7').style.display = 'none';
+    document.getElementById('header12').style.display = 'none';
     document.getElementById('header8').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
     document.getElementById('gtabs6').classList.add('selected');
@@ -983,6 +1061,13 @@ function aboutsettingsheader(){
     document.getElementById('header10').classList.add('selected');
 }
 
+function downloadsheader(){
+    resetHeaderSelected();
+    document.getElementById('patchNotes').style.display = "flex";
+    generatedownloads("./assets/json/base.json");
+    document.getElementById('header12').classList.add('selected');
+}
+
 // Dropdown game options toggle
 function dropdowntoggle(){
     if (dropdown.style.visibility === 'hidden') {
@@ -1002,7 +1087,7 @@ function resetTabSelected() {
         let gtabs = document.getElementById('gtabs' + [i]);
         gtabs.classList.remove('selected');
     };
-    for (var i = 1; i < 12; i++) { 
+    for (var i = 1; i < 13; i++) { 
         let headers = document.getElementById('header' + [i]);
         headers.style.display = "block";
     };
@@ -1014,7 +1099,7 @@ function resetHeaderSelected() {
     while (dropdown.firstChild) {dropdown.removeChild(dropdown.firstChild)};
     while (mods.firstChild) {mods.removeChild(mods.firstChild)};
     while (notes.firstChild) {notes.removeChild(notes.firstChild)};
-    for (var i = 1; i < 11; i++) { 
+    for (var i = 1; i < 13; i++) { 
         let headers = document.getElementById('header' + [i]);
         headers.classList.remove('selected'); 
     };
@@ -1023,6 +1108,7 @@ function resetHeaderSelected() {
     document.getElementById('mods').style.display = "none";
     document.getElementById('faq').style.display = "none";
     document.getElementById('installations').style.display = "none";
+    document.getElementById('downloads').style.display = "none";
     document.getElementById('patchNotes').style.display = "none";
     document.getElementById('credits').style.display = "none";
     document.getElementById('contributors').style.display = "none";

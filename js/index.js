@@ -664,7 +664,7 @@ function generatedownloads() {
             patchnote.className = "patchnote";
             patchnote.setAttribute('data-download-type', note.type);
             patchnote.addEventListener("click", () => {
-				const link = document.createElement('a');
+				const link = document.createElement('a'); 
 				link.href = note.link + "index.html";
 				link.download = note.title + " " + note.version + '.html'; // Forces download
 				document.body.appendChild(link);
@@ -1079,7 +1079,7 @@ function dropdowntoggle(){
     }
 }
 
-// Resets certain UI aspects
+// Resets certain UI aspects 
 function resetTabSelected() {
     while (dropdown.firstChild) {dropdown.removeChild(dropdown.firstChild)};
     while (installations.firstChild) {installations.removeChild(installations.firstChild)};
@@ -1108,7 +1108,6 @@ function resetHeaderSelected() {
     document.getElementById('mods').style.display = "none";
     document.getElementById('faq').style.display = "none";
     document.getElementById('installations').style.display = "none";
-    document.getElementById('downloads').style.display = "none";
     document.getElementById('patchNotes').style.display = "none";
     document.getElementById('credits').style.display = "none";
     document.getElementById('contributors').style.display = "none";

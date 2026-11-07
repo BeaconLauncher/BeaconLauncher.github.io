@@ -1,4 +1,17 @@
-[  	
+[  		
+	{
+        "title": "Site update: Offline Downloads",
+        "version": "v1.5.4",
+        "description": "Added a download screen and more servers",
+        "date": "November 7th, 2026",
+        "icon": "/download.png",
+        "type": "site",
+        "notes": [
+            "Added a new download tab where you can download offline .html files for some Eaglercraft versions",
+            "Added more servers to the server list (ai-assisted)",
+            "Removed herobrine"
+        ]
+	}, 
 	{
         "title": "Hotfix: New version",
         "version": "v1.5.32",

@@ -49,7 +49,7 @@
 - [x] Add Patch Notes screen
 - [ ] Fix display errors
 - [x] Offline launcher download?
-- [x] Offline eaglercraft downloads
+- [x] Offline eaglercraft downloads 
 </details>
 
 ## Credits

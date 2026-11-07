@@ -1079,7 +1079,7 @@ function dropdowntoggle(){
     }
 }
 
-// Resets certain UI aspects
+// Resets certain UI aspects 
 function resetTabSelected() {
     while (dropdown.firstChild) {dropdown.removeChild(dropdown.firstChild)};
     while (installations.firstChild) {installations.removeChild(installations.firstChild)};

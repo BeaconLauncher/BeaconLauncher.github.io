@@ -1213,7 +1213,7 @@ function stealthmode() {
   		document.getElementById("stealthinput").style.display = "none";
   		document.getElementById('launchnewtab').disabled = false;
    		document.querySelector("link[rel*='icon']").href = './assets/images/logo.png';
-   		document.title = "Eagler Launcher";
+   		document.title = "Beacon Launcher";
    		localStorage.setItem("stealth", false)
 
   	}

@@ -1,4 +1,5 @@
-# <img src=".github/assets/eaglerlauncher_title.png" align="center" width="700px"><img src=".github/assets/logo.png" align="right" width="250px"><br>
+# Beacon Launcher <img src=".github/assets/logo.png" align="right" width="250px"><br>
+
  A minecraft themed launcher for Eaglercraft!<br>
  Containing some of the best clients all in one place!
 
@@ -8,6 +9,8 @@
 <hr>
 
  ## Versions
+ __v1.5.5__ - Rebranded the launcher to Beacon Launcher <br>
+ __v1.5.4__ - Added downloads tab where you can download offline .html files of some eaglercraft versions <br>
  __v1.5.3__ - Moved the entire repo to EaglerLauncher.github.io, Added a server screen and made the skin editor into its own tab<br>
  __v1.5.2__ - Added way more clients and some new modpacks to the launcher and updated some clients<br>
  __v1.5.1__ - Added customizable launcher options, credits, settings, more memory options, and updated code! (made by irv77)<br>

@@ -1,4 +1,17 @@
-[  		
+[  	
+	{
+        "title": "Site update: Rebrand",
+        "version": "v1.5.5",
+        "description": "Renamed the launcher to beacon launcher",
+        "date": "November 8th, 2026",
+        "icon": "/logo.png",
+        "type": "site",
+        "notes": [
+			"Renamed the launcher to beacon launcher (because let's face it, EaglerLauncher is a bad name)",
+			"Changed the logo to a beacon",
+            "Removed herobrine"
+        ]
+	}, 	
 	{
         "title": "Site update: Offline Downloads",
         "version": "v1.5.4",
@@ -218,7 +231,7 @@
     {
         "title": "Ampler Launcher Release",
         "version": "v1.0.0",
-        "description": "this was when the orignal ampler launcher was released. eagler launcher is a fork of ampler launcher.",
+        "description": "This was when the orignal ampler launcher was released. Beacon Launcher is a fork of ampler launcher.",
         "date": "Saturday, July 17th, 2024",
         "icon": "logo_old.png",
         "type": "site",

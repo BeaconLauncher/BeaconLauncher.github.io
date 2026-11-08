@@ -76,7 +76,7 @@ if (stealthmodebox.checked) {
 	setstealth()
 } else {
 	document.querySelector("link[rel*='icon']").href = './assets/images/logo.png';
-   	document.title = "Eagler Launcher";
+   	document.title = "Beacon Launcher";
     document.getElementById("stealthinput").style.display = "none";
 	document.getElementById('launchnewtab').disabled = false;
 };

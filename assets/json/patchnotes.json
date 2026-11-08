@@ -123,7 +123,7 @@
         "version": "v1.4.2",
         "description": "Added skin editor, new clients and optimized eagler launcher",
         "date": "January 1st, 2026",
-        "icon": "logo.png",
+        "icon": "logo_eagler.png",
         "type": "site",
         "notes": [
             "Added TheCreationKing's skin editor",

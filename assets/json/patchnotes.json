@@ -1,5 +1,17 @@
 [  	
 	{
+        "title": "Hotfix: More clients",
+        "version": "v1.5.51",
+        "description": "Added 3 new clients",
+        "date": "November 9th, 2026",
+        "icon": "/sidebar/i-modded.png",
+        "type": "hotfix",
+        "notes": [
+			"Added UwU client, Fuchsia hacked client and Ayuncraft",
+            "Removed herobrine"
+        ]
+	},
+	{
         "title": "Site update: Rebrand",
         "version": "v1.5.5",
         "description": "Renamed the launcher to beacon launcher",

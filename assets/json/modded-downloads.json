@@ -89,6 +89,20 @@
        "type": "js",
        "icon": "./assets/images/mc-icons/dragon-head.png",
        "link": "./mc/dragonxlite/"
+    },    
+    {
+       "title": "UwU Client",
+       "version": "1.8.8",
+       "type": "js",
+       "icon": "./assets/images/icons/uwu.svg",
+       "link": "./mc/uwuclient/"
+    },
+    {
+       "title": "Fuchsia hacked client",
+       "version": "1.5.2",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/clay.png",
+       "link": "./mc/fuchsia/"
     },
     {
        "title": "Explore Modpack",

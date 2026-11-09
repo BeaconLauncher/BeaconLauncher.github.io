@@ -144,6 +144,30 @@
        "download": false
     },
     {
+       "title": "UwU Client",
+       "version": "1.8.8",
+       "icon": "./assets/images/icons/uwu.svg",
+       "link": "./mc/uwuclient/",
+       "active": false,
+       "download": false
+    },
+    {
+       "title": "Fuchsia hacked client",
+       "version": "1.5.2",
+       "icon": "./assets/images/mc-icons/clay.png",
+       "link": "./mc/fuchsia/",
+       "active": false,
+       "download": false
+    },
+    {
+       "title": "Ayuncraft",
+       "version": "1.5.2",
+       "icon": "./assets/images/icons/ayunami2000.gif",
+       "link": "./mc/ayuncraft-1.5.2/",
+       "active": false,
+       "download": false
+    },
+    {
        "title": "Explore Modpack",
        "version": "1.6.4",
        "icon": "./assets/images/mc-icons/command-block.png",

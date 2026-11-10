@@ -20,7 +20,7 @@ function shuffle(array) {
     }
 }
 
-let gamelink = ".mc/26.2-wasm"
+let gamelink = ".mc/26.3-wasm"
 
 
 
@@ -42,10 +42,10 @@ console.log(stealthmodebox.checked)
 let modslauncher
 if (localStorage.getItem("modslauncher")) {
     modslauncher = JSON.parse(localStorage.getItem("modslauncher"))};
-if (!localStorage.getItem("launcherpresets")) {
+if (!localStorage.getItem("launchnewtab")) {
     localStorage.setItem("customlaunchers", "[]");
     localStorage.setItem("customlaunchersnumber", 0);
-    localStorage.setItem("launcherpresets", false);
+    localStorage.setItem("launcherpresets", true);
     localStorage.setItem("launchnewtab", false);
     localStorage.setItem("stealth", false);
 };

@@ -56,10 +56,24 @@
        "link": "./mc/1.8.8-wasm-offline/"
     },
     {
+       "title": "Eaglercraft 1.6.4",
+       "version": "1.6.4-25w17a",
+       "icon": "./assets/images/mc-icons/hay-bale.png",
+       "link": "./mc/1.6.4-offline/",
+       "active": true
+    },
+    {
        "title": "Eaglercraft 1.5.2",
        "version": "1.5.2-sp2.01",
        "type": "js",
        "icon": "./assets/images/mc-icons/hopper.png",
        "link": "./mc/1.5.2-offline/"
+    },
+    {
+       "title": "Eaglercraft Classic 0.30 WASM",
+       "version": "c0.30-wasm",
+       "type": "wasm",
+       "icon": "./assets/images/mc-icons/tnt-wasm.png",
+       "link": "./mc/c0.30-offline/"
     }
 ]

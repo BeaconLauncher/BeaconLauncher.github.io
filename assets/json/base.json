@@ -60,7 +60,7 @@
        "version": "1.6.4-25w17a",
        "icon": "./assets/images/mc-icons/hay-bale.png",
        "link": "./mc/1.6.4/",
-       "active": false
+       "active": true
     },
     {
        "title": "Eaglercraft 1.5.2",

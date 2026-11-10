@@ -12,7 +12,7 @@
        "version": "1.8.8-v1.6",
        "icon": "./assets/images/icons/astra-client.png",
        "link": "./mc/astraclient/",
-       "active": false,
+       "active": true,
        "download": true
     },
     {
@@ -20,7 +20,7 @@
        "version": "1.8.8-v1.6-wasm",
        "icon": "./assets/images/icons/astra-client-wasm.png",
        "link": "./mc/astraclient-wasm/",
-       "active": false,
+       "active": true,
        "download": true
     },
     {
@@ -37,6 +37,22 @@
        "icon": "./assets/images/icons/kone.png",
        "link": "./mc/koneclient",
        "active": false,
+       "download": false
+    },
+    {
+       "title": "Eaglercraft Ranked",
+       "version": "26.2",
+       "icon": "./assets/images/icons/ranked.png",
+       "link": "./mc/ranked-26.2",
+       "active": true,
+       "download": false
+    },
+    {
+       "title": "Eaglercraft Ranked",
+       "version": "1.8.8",
+       "icon": "./assets/images/icons/ranked.png",
+       "link": "./mc/ranked-1.8.8",
+       "active": true,
        "download": false
     },
     {
@@ -108,7 +124,7 @@
        "version": "1.12.2-v3.0.0",
        "icon": "./assets/images/icons/pixelclient.png",
        "link": "./mc/pixelclient-1.12.2/",
-       "active": false,
+       "active": true,
        "download": true
     },
     {
@@ -116,7 +132,7 @@
        "version": "1.12.2-v3.0.0-wasm",
        "icon": "./assets/images/icons/pixelclient-wasm.png",
        "link": "./mc/pixelclient-1.12.2-wasm/",
-       "active": false,
+       "active": true,
        "download": true
     },
     {

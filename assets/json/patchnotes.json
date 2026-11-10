@@ -2,12 +2,13 @@
 	{
         "title": "Hotfix: More clients",
         "version": "v1.5.51",
-        "description": "Added 3 new clients",
-        "date": "November 9th, 2026",
+        "description": "Added 5 new clients and 2 new offline download",
+        "date": "November 10th, 2026",
         "icon": "/sidebar/i-modded.png",
         "type": "hotfix",
         "notes": [
-			"Added UwU client, Fuchsia hacked client and Ayuncraft",
+			"Added UwU client, Fuchsia hacked client, Ayuncraft and Eaglercraft Ranked 26.2 & 1.8.8",
+			"Added offline downloads for c0.30 and 1.6.4",
             "Removed herobrine"
         ]
 	},

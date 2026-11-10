@@ -58,6 +58,7 @@
     {
        "title": "Eaglercraft 1.6.4",
        "version": "1.6.4-25w17a",
+       "type": "js",
        "icon": "./assets/images/mc-icons/hay-bale.png",
        "link": "./mc/1.6.4-offline/",
        "active": true

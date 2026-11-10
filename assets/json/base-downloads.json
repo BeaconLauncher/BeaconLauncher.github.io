@@ -70,6 +70,46 @@
        "link": "./mc/1.5.2-offline/"
     },
     {
+       "title": "Eaglercraft 1.2.5",
+       "version": "1.2.5",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/jungle-log.png",
+       "link": "./mc/1.2.5-offline/",
+       "active": false
+    },
+    {
+       "title": "Eaglercraft Beta 1.7.3",
+       "version": "b1.7.3",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/sticky-piston.png",
+       "link": "./mc/b1.7.3-offline/",
+       "active": false
+    },
+    {
+       "title": "Eaglercraft Beta 1.3",
+       "version": "b1.3_01-23w49a",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/red-bed.png",
+       "link": "./mc/b1.3-offline/",
+       "active": false
+    },
+    {
+       "title": "Eaglercraft Beta 1.1",
+       "version": "b1.1_02-25w20a",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/oak-leaves.png",
+       "link": "./mc/b1.1-offline/",
+       "active": false
+    },
+    {
+       "title": "Eaglercraft Alpha 1.2.6",
+       "version": "a1.2.6",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/jack-o-lantern.png",
+       "link": "./mc/a1.2.6-offline/",
+       "active": false
+    },
+    {
        "title": "Eaglercraft Classic 0.30 WASM",
        "version": "c0.30-wasm",
        "type": "wasm",

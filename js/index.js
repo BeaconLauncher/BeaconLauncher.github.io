@@ -28,6 +28,8 @@ let gamelink = ".mc/26.3-wasm"
 let selectedGame1 = localStorage.getItem("basegame");
 let selectedGame2 = localStorage.getItem("moddedgame");
 let selectedGame3 = localStorage.getItem("assisted");
+let selectedHeader = localStorage.getItem("header");
+
 let stealthname = localStorage.getItem("stealthname")
 if (!stealthname == "") {
 	document.getElementById("stealthinput").value = stealthname
@@ -997,6 +999,7 @@ function settingsmenu(){
 
 // Header Options
 function playheader(){
+	localStorage.setItem("header", "play")
     resetHeaderSelected();
     generategames(launcher);
     document.getElementById('game-bg').style.display = "flex";
@@ -1004,22 +1007,26 @@ function playheader(){
     document.getElementById('header1').classList.add('selected');
 }
 function modsheader(){
+	localStorage.setItem("header", "mods")
     resetHeaderSelected();
     generatemods();
     document.getElementById('mods').style.display = "flex";
     document.getElementById('header2').classList.add('selected');
 }
 function faqsheader(){
+	localStorage.setItem("header", "faqs")
     resetHeaderSelected();
     document.getElementById('faq').style.display = "flex";
     document.getElementById('header3').classList.add('selected');
 }
 function installationheader(){
+	localStorage.setItem("header", "installation")
     resetHeaderSelected();
     document.getElementById('installations').style.display = "flex";
     document.getElementById('header4').classList.add('selected');
 }
 function skinsheader(){
+	localStorage.setItem("header", "skins")
     resetHeaderSelected();
     document.getElementById('skineditor').style.display = "flex";
     document.getElementById("skinsiframe").style.display = "flex";
@@ -1027,34 +1034,40 @@ function skinsheader(){
     document.getElementById("skinsiframe").src = "./skineditor";
 }
 function patchnotesheader(){
+	localStorage.setItem("header", "patchnotes")
     resetHeaderSelected();
     generatenotes();
     document.getElementById('patchNotes').style.display = "flex";
     document.getElementById('header6').classList.add('selected');
 }
 function serversheader(){
+	localStorage.setItem("header", "servers")
     resetHeaderSelected();
     generateservers();
     document.getElementById('servers').style.display = "flex";
     document.getElementById('header11').classList.add('selected');
 }
 function contributorsheader(){
+	localStorage.setItem("header", "contributors")
     resetHeaderSelected();
     document.getElementById('contributors').style.display = "flex";
     document.getElementById('header7').classList.add('selected');
 }
 function creditsheader(){
+	localStorage.setItem("header", "credits")
     resetHeaderSelected();
     document.getElementById('credits').style.display = "flex";
     document.getElementById('header8').classList.add('selected');
 }
 function generalsettingsheader(){
+	localStorage.setItem("header", "generalsettings")
     resetHeaderSelected();
     document.getElementById('settings').style.display = "flex";
     document.getElementById('generalsettings').style.display = "block";
     document.getElementById('header9').classList.add('selected');
 }
 function aboutsettingsheader(){
+	localStorage.setItem("header", "aboutsettings")
     resetHeaderSelected();
     document.getElementById('settings').style.display = "flex";
     document.getElementById('aboutsettings').style.display = "block";
@@ -1062,6 +1075,7 @@ function aboutsettingsheader(){
 }
 
 function downloadsheader(){
+	localStorage.setItem("header", "downloads")
     resetHeaderSelected();
     document.getElementById('patchNotes').style.display = "flex";
     generatedownloads("./assets/json/base.json");
@@ -1264,5 +1278,10 @@ function clearlocalstorageconfirm() {
     localStorage.clear();
     location.reload();
 };
+
+if (selectedHeader) {
+	const name = selectedHeader + "header"
+	window[name]();
+}
 
 generatefaqs();

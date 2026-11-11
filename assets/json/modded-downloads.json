@@ -28,6 +28,14 @@
        "link": "./mc/EaglyMC"
     },
     {
+       "title": "EaglercraftL 1.9.4",
+       "version": "1.9.4",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/chorus-flower.png",
+       "link": "./mc/1.9.4/",
+       "active": false
+    },
+    {
        "title": "Eclipse Client",
        "version": "1.19-1.0.8-wasm",
        "type": "wasm",

@@ -132,5 +132,21 @@
        "icon": "./assets/images/mc-icons/grass-old-wasm.png",
        "link": "./mc/rd-132328-wasm-offline/",
        "active": false
+    },    
+    {
+       "title": "Eaglercraft Pre-Classic rd-132211",
+       "version": "rd-132211",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/player-head.png",
+       "link": "./mc/rd-132211-offline/",
+       "active": false
+    },
+    {
+       "title": "Eaglercraft Pre-Classic rd-132328 WASM",
+       "version": "rd-132328-wasm",
+       "type": "wasm",
+       "icon": "./assets/images/mc-icons/player-head-wasm.png",
+       "link": "./mc/rd-132211-wasm-offline/",
+       "active": false
     }
 ]

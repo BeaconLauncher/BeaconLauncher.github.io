@@ -18,7 +18,7 @@
        "version": "1.20.6-pre-wasm",
        "icon": "./assets/images/icons/eaglymc-wasm.png",
        "link": "./mc/1.20.6-wasm/",
-       "active": true
+       "active": false
     },
     {
        "title": "Eaglercraft 1.14.4 WASM",
@@ -60,7 +60,7 @@
        "version": "1.6.4-25w17a",
        "icon": "./assets/images/mc-icons/hay-bale.png",
        "link": "./mc/1.6.4/",
-       "active": true
+       "active": false
     },
     {
        "title": "Eaglercraft 1.5.2",
@@ -156,28 +156,28 @@
     {
        "title": "Eaglercraft Pre-Classic rd-132328",
        "version": "rd-132328",
-       "icon": "./assets/images/mc-icons/grass-old.png",
+       "icon": "./assets/images/mc-icons/player-head.png",
        "link": "./mc/rd-132328/",
        "active": false
     },
     {
        "title": "Eaglercraft Pre-Classic rd-132328 WASM",
        "version": "rd-132328-wasm",
-       "icon": "./assets/images/mc-icons/grass-old-wasm.png",
+       "icon": "./assets/images/mc-icons/player-head-wasm.png",
        "link": "./mc/rd-132328-wasm/",
        "active": false
     },    
     {
        "title": "Eaglercraft Pre-Classic rd-132211",
        "version": "rd-132211",
-       "icon": "./assets/images/mc-icons/player-head.png",
+       "icon": "./assets/images/mc-icons/grass-old.png.png",
        "link": "./mc/rd-132211/",
        "active": false
     },
     {
        "title": "Eaglercraft Pre-Classic rd-132211 WASM",
        "version": "rd-132211-wasm",
-       "icon": "./assets/images/mc-icons/player-head-wasm.png",
+       "icon": "./assets/images/mc-icons/grass-old-wasm.png",
        "link": "./mc/rd-132211-wasm/",
        "active": false
     }

@@ -79,6 +79,22 @@
        "active": false
     },
     {
+       "title": "Eaglercraft 1.0",
+       "version": "1.0",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/end-stone.png",
+       "link": "./mc/1.0-offline/",
+       "active": false
+    },    
+    {
+       "title": "Eaglercraft 1.0 WASM",
+       "version": "1.0-wasm",
+       "type": "wasm",
+       "icon": "./assets/images/mc-icons/end-stone-wasm.png",
+       "link": "./mc/1.0-wasm-offline/",
+       "active": false
+    },
+    {
        "title": "Eaglercraft Beta 1.7.3",
        "version": "b1.7.3",
        "type": "js",

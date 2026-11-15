@@ -1,4 +1,16 @@
 [  	
+    {
+        "title": "App update: Offline app 2.0!",
+        "version": "v1.6.0",
+        "description": "Made the app for BeaconLauncher not be an half-working zip file",
+        "date": "November 15th, 2026",
+        "icon": "App_Offline.png",
+        "type": "site",
+        "notes": [
+            "(Only on desktop app) Made installations actually download to your PC, so you can use them offline",
+            "Removed herobrine"
+        ]
+    },
 	{
         "title": "Hotfix: Add 1.0",
         "version": "v1.5.52",

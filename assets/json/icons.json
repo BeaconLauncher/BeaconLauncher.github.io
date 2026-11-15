@@ -1,6 +1,7 @@
 [
     "./assets/images/mc-icons/grass.png",
     "./assets/images/mc-icons/dirt.png",
+    "./assets/images/mc-icons/grass-old.png",
     "./assets/images/mc-icons/clay.png",
     "./assets/images/mc-icons/jungle-log.png",
     "./assets/images/mc-icons/oak-leaves.png",
@@ -12,6 +13,8 @@
     "./assets/images/mc-icons/monster-spawner.png",
     "./assets/images/mc-icons/red-bed.png",
     "./assets/images/mc-icons/skull.png",
+    "./assets/images/mc-icons/player-head.png",
+    "./assets/images/mc-icons/end-stone.png",
     "./assets/images/mc-icons/sticky-piston.png",
     "./assets/images/mc-icons/tnt.png",
     "./assets/images/mc-icons/command-block.png"

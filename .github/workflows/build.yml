@@ -5,7 +5,7 @@ on:
     branches:
       - Offline-App
     tags:
-      - "v*"
+      - 'v*'
   workflow_dispatch:
 
 permissions:

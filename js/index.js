@@ -74,7 +74,7 @@ let selectedGame3 = localStorage.getItem("assisted");
 let selectedHeader = localStorage.getItem("header");
 
 let stealthname = localStorage.getItem("stealthname")
-if (!stealthname == "") {
+if (stealthname != "") {
 	document.getElementById("stealthinput").value = stealthname
 }
 else {

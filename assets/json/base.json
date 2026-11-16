@@ -4,14 +4,14 @@
        "version": "26.3-beta-wasm",
        "icon": "./assets/images/mc-icons/poplar-log-wasm.png",
        "link": "./mc/26.3-wasm/",
-       "active": true
+       "active": false
     }, 
 	{
        "title": "Previous release WASM",
        "version": "26.2-beta-wasm",
        "icon": "./assets/images/mc-icons/sulfur-cube-wasm.png",
        "link": "./mc/26.2-wasm/",
-       "active": true
+       "active": false
     },
     {
        "title": "Eaglercraft 1.20.6 WASM",
@@ -32,28 +32,28 @@
        "version": "1.12.2-u2",
        "icon": "./assets/images/mc-icons/grass.png",
        "link": "./mc/1.12.2/",
-       "active": true
+       "active": false
     },
     {
        "title": "Eaglercraft 1.12.2 WASM",
        "version": "1.12.2-u2-wasm",
        "icon": "./assets/images/mc-icons/grass-wasm.png",
        "link": "./mc/1.12.2-wasm/",
-       "active": true
+       "active": false
     },
     {
        "title": "Eaglercraft 1.8.8",
        "version": "1.8.8-u53",
        "icon": "./assets/images/mc-icons/dirt.png",
        "link": "./mc/1.8.8/",
-       "active": true
+       "active": false
     },
     {
        "title": "Eaglercraft 1.8.8 WASM",
        "version": "1.8.8-u53-wasm",
        "icon": "./assets/images/mc-icons/dirt-wasm.png",
        "link": "./mc/1.8.8-wasm/",
-       "active": true
+       "active": false
     },
     {
        "title": "Eaglercraft 1.6.4",
@@ -67,7 +67,7 @@
        "version": "1.5.2-sp2.01",
        "icon": "./assets/images/mc-icons/hopper.png",
        "link": "./mc/1.5.2/",
-       "active": true
+       "active": false
     },
     {
        "title": "Eaglercraft 1.2.5",
@@ -75,7 +75,7 @@
        "icon": "./assets/images/mc-icons/jungle-log.png",
        "link": "./mc/1.2.5/",
        "active": false
-    },
+    },    
     {
        "title": "Eaglercraft 1.0",
        "version": "1.0",
@@ -184,7 +184,7 @@
     {
        "title": "Eaglercraft rd-132211",
        "version": "rd-132211",
-       "icon": "./assets/images/mc-icons/grass-old.png",
+       "icon": "./assets/images/mc-icons/grass-old.png.png",
        "link": "./mc/rd-132211/",
        "active": false
     },

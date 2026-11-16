@@ -91,7 +91,7 @@
         <div id="gtabs6" class="sidebarOptions sidebarBottom" onclick="settingsmenu()">
             <img src="./assets/images/sidebar/m-settings.png"><div class="gTabsText"><p> Settings</p></div>
         </div>
-        <div class="launcherVersion"><p>v1.5.52</p></div>
+        <div class="launcherVersion"><p>v1.6.0</p></div>
     </div>
     <div class="mainPage">
         <div class="gameHeader">
@@ -216,12 +216,9 @@
 					<div class="classicbutton" id="review" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScu0EeJLukO-5I8OsG2C_WSZKJWWv-99ul2qigEpwYhf_Isvg/viewform'">
 	                    <p class="bolded">Review the Launcher</p>
 	                </div> <br>
-	                <div class="classicbutton" id="download" onclick="location.href='https://github.com/BeaconLauncher/BeaconLauncher.github.io/releases/latest'">
-	                    <p class="bolded">Download offline version</p>
-	                </div>
 				</div>
                 <p class="bolded settingstitle">LAUNCHER SETTINGS</p>
-                <div class="settingoption"><input id="launcherpresets" class="settingsbox" type="checkbox" onchange="presetlaunchers()"><p>Preset installations</p></div>
+                <div style="display: none;" class="settingoption"><input id="launcherpresets" class="settingsbox" type="checkbox" onchange="presetlaunchers()"><p>Preset installations</p></div>
                 <div class="settingoption"><input id="launchnewtab" class="settingsbox" type="checkbox" onchange="launchnewtab()"><p>Launch game in new window</p></div>
                 <div class="settingoption"><input id="stealthmode" class="settingsbox" type="checkbox" onchange="stealthmode()"><p>Stealth mode</p></div>
                 <input id="stealthinput" type="text" autocomplete="off" placeholder="https://docs.google.com" value="https://docs.google.com" onkeyup="if (event.key === 'Enter') stealthnamechange()">
@@ -244,16 +241,16 @@
                 </div>
                 <hr>
                 <p class="bolded settingstitle">UI</p>
-                <p class="settingsdetails">v1.5.52</p>
+                <p class="settingsdetails">v1.6.0</p>
                 <p class="settingsdetails">November 15th, 2026</p>
                 <hr>
                 <p class="bolded settingstitle">LEGAL AND CREDITS</p>
-                <p class="settingsdetails">This website is not affiliated with Mojang.</p>
+                <p class="settingsdetails">This application is not affiliated with Mojang.</p>
                 <p class="settingsdetails">Copyright © 2024-2026 <span style="color: green; text-shadow: 0 0 1vw;">Dutch Ducks Development</span>. All rights reserved.</p>
             </div>
         </div>
         <div id="gameSelection">
-                <div class="dropdownSelector" onclick="dropdowntoggle()">
+                <div class="dropdownSelector" id="dropdownSelector" onclick="dropdowntoggle()">
                     <div style="display: flex; gap: 1vw;">
                         <div class="centeredIcon">
                             <img id="gameicon" src="./assets/images/mc-icons/poplar-log-wasm.png" style="width: 2.5vw;" />
@@ -272,11 +269,14 @@
                         </div>
                     </div>
                 </div>
-            <div id="dropdn" class="dropdownMenu" style="visibility: hidden;"></div>
+            <div id="ddcontainer">
+				<div id="dropdn" class="dropdownMenu" style="visibility: hidden;"></div>
+            </div>
             <a id="playbutton" onclick="openmc()"><div id="mainbutton" class="playButton"></div></a>
             <div class="username centeredIcon bolded"><p id="username">Generic User</p></div>
         </div>
     </div>
+    <div id="freeze" style="display:none; position:fixed; inset:0; z-index:9999;"></div>
     <script src="./js/index.js"></script>
 </body>
 </html>

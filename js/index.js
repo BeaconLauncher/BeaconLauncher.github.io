@@ -13,6 +13,10 @@ function errorNA(text) {
     }, 3200);
 }
 
+function freeze(on) {
+  document.getElementById('freeze').style.display = on ? 'block' : 'none';
+}
+
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -20,9 +24,48 @@ function shuffle(array) {
     }
 }
 
-let gamelink = "./mc/26.3-wasm"
+let haslauncher = false
+let gamelink = ""
 
+function gamepathFor(path) {
+    if (path === "./assets/json/base.json") return "basegame";
+    if (path === "./assets/json/modded.json") return "moddedgame";
+    if (path === "./assets/json/assisted.json") return "assisted";
+    return null;
+}
 
+// Returns the first custom launcher for this game type, or null
+function getCustomLauncher(path) {
+    const gp = gamepathFor(path);
+    const list = JSON.parse(localStorage.getItem("customlaunchers") || "[]");
+    for (const t of list) {
+        const g = JSON.parse(localStorage.getItem("c" + t));
+        if (g.custom === gp) return g;
+    }
+    return null;
+}
+
+// Sets the default game + locks/unlocks the play button for the current edition
+function applyLauncherState(path) {
+    const custom = getCustomLauncher(path);
+    const selector = document.getElementById("dropdownSelector");
+    const mainbutton = document.getElementById("mainbutton");
+    const playbutton = document.getElementById("playbutton");
+
+    if (custom) {
+        document.getElementById('gametitle').innerHTML = custom.title.slice(4);
+        document.getElementById('gameversion').innerHTML = custom.version;
+        document.getElementById('gameicon').src = custom.icon;
+        gamelink = custom.link;
+        selector.style.display = "flex";
+        mainbutton.className = "playButton";
+        playbutton.setAttribute("onclick", "openmc()");
+    } else {
+        selector.style.display = "none";   // hidden only when nothing is installed
+        mainbutton.className = "lockedButton";
+        playbutton.setAttribute("onclick", "alert('No Eaglercraft installed yet! Install an edition by going to the Installations tab')");
+    }
+}
 
 // Last Played Game Option
 let selectedGame1 = localStorage.getItem("basegame");
@@ -47,14 +90,25 @@ if (localStorage.getItem("modslauncher")) {
 if (!localStorage.getItem("launchnewtab")) {
     localStorage.setItem("customlaunchers", "[]");
     localStorage.setItem("customlaunchersnumber", 0);
-    localStorage.setItem("launcherpresets", true);
-    localStorage.setItem("launchnewtab", false);
+    localStorage.setItem("launcherpresets", false);
+    localStorage.setItem("launchnewtab", true);
     localStorage.setItem("stealth", false);
 };
 let customlaunchersnumber = localStorage.getItem("customlaunchersnumber").padStart(2, "0");
+if (customlaunchersnumber > 0) {
+	haslauncher = true;
+};
 if (customlaunchersnumber > 99) {
     console.log("%cWell.. You found an easter egg. You broke the launcher. Sure I can easily fix it. But this is a rare bug. Report if you found this bug, then I will. -IRV77", "color: red; font-weight: bold; background-color: rgba(0,0,0,0.5); padding: 1vw;");
 };
+
+console.log(haslauncher);
+if (!haslauncher) {
+	document.getElementById("dropdownSelector").style.display = "none";
+	document.getElementById("mainbutton").className = "lockedButton";
+	document.getElementById("playbutton").setAttribute("onclick", "alert('No Eaglercraft installed yet! Install an edition by going to the Installations tab')");
+};
+
 
 
 async function setstealth() {
@@ -322,18 +376,74 @@ function newinstallation(data) {
     externalmenu.style.display = "flex";
 };
 
-function newinstallationsave(notsaving) {
+const REPO = 'BeaconLauncher/BeaconLauncher.github.io';
+const BRANCH = 'main'; // change if your default branch is different
+
+async function listFiles(folder) {
+  const res = await fetch(`https://api.github.com/repos/${REPO}/git/trees/${BRANCH}?recursive=1`);
+  if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
+
+  const { tree, truncated } = await res.json();
+  if (truncated) console.warn("Git tree was truncated; some files may be missing.");
+
+  return tree
+    .filter(item => item.type === 'blob' && item.path.startsWith(folder + '/'))
+    .map(item => ({
+      path: item.path,
+      download_url: `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${encodeURI(item.path)}`
+    }));
+}
+
+async function downloadmc(link) {
+  // "./mc/26.2-wasm/" -> "mc/26.2-wasm"
+  const folder = link.replace(/^\.\//, '').replace(/\/+$/, '');
+  const files = await listFiles(folder);
+
+  if (files.length === 0) throw new Error(`No files found in ${folder}`);
+  console.log(`Downloading ${files.length} files from ${folder}`);
+
+  const BATCH = 5;
+  for (let i = 0; i < files.length; i += BATCH) {
+    await Promise.all(files.slice(i, i + BATCH).map(async (file) => {
+      const res = await fetch(file.download_url);
+      if (!res.ok) throw new Error(`Failed to fetch ${file.path}: ${res.status}`);
+      const buf = new Uint8Array(await res.arrayBuffer());
+      await window.beacon.saveFile(file.path, buf);
+    }));
+  }
+}
+
+async function newinstallationsave(notsaving) {
     let customlaunchname = document.getElementById("installationscreenname").value;
     if (!customlaunchname) {customlaunchname = "New Installation";};
     let gamepath;
     if (localStorage.getItem("startupprofile") == 1) {gamepath = "basegame"};
     if (localStorage.getItem("startupprofile") == 2) {gamepath = "moddedgame"};
     if (localStorage.getItem("startupprofile") == 3) {gamepath = "assisted"};
+
+    const dropdown = document.getElementById("installationscreendropdown");
+    const link = dropdown.value; // e.g. "./mc/26.3-wasm"
+
+    // Download the edition into the local mc folder first.
+    // If this throws, nothing below runs and no installation is saved.
+    try {
+		freeze(true);
+		document.getElementById("newinstallationsave").innerHTML = `<p class="bolded">Installing...</p>`
+        await downloadmc(link);
+        freeze(false);
+		applyLauncherState(launcher);
+		location.reload();
+    } catch (err) {
+        console.error("Edition download failed:", err);
+        alert("Couldn't download this edition. Check your connection and try again.");
+        return;
+    }
+
     let customlaunch = {
         "title": customlaunchersnumber + "cl" + customlaunchname,
-        "version": document.getElementById("installationscreendropdown").selectedOptions[0].innerText,
+        "version": dropdown.selectedOptions[0].innerText,
         "icon": document.querySelector(".newinstallationicons").getAttribute("data-icon"),
-        "link": document.getElementById("installationscreendropdown").value,
+        "link": link,
         "active": true,
         "custom": gamepath
     };
@@ -348,6 +458,7 @@ function newinstallationsave(notsaving) {
         while (installations.firstChild) {installations.removeChild(installations.firstChild)};
         generatelaunchers(launcher);
     };
+    
     closenotescreen();
 };
 
@@ -405,12 +516,13 @@ function installationedit(data, title) {
         installationscreendropdown.value = JSON.parse(localStorage.getItem("c" + title)).link;
     });
 
+
     const installationscreenfooter = document.createElement("div");
     installationscreenfooter.className = "newinstallationfooter";
     const installationscreenfooterhr = document.createElement("hr");
     const installationscreenfooterbuttons = document.createElement("div");
     installationscreenfooterbuttons.className = "newinstallationfooterbuttons";
-    installationscreenfooterbuttons.innerHTML = `<div id="newinstallationcancel" class="classicbutton" onclick="closenotescreen();"><p class="bolded">Cancel</p></div><div id="newinstallationsave" class="greenbutton classicbutton" onclick="localStorage.removeItem('c` + title + `'); localStorage.removeItem('` + title + `'); localStorage.setItem('customlaunchers', JSON.stringify(JSON.parse(localStorage.getItem('customlaunchers')).filter(item => item !== '` + title + `'))); newinstallationsave(false);"><p class="bolded">Save</p></div>`;
+    installationscreenfooterbuttons.innerHTML = `<div id="newinstallationcancel" class="classicbutton" onclick="closenotescreen();"><p class="bolded">Cancel</p></div><div id="newinstallationsave" class="greenbutton classicbutton" onclick="localStorage.removeItem('c` + title + `'); localStorage.removeItem('` + title + `'); localStorage.setItem('customlaunchers', JSON.stringify(JSON.parse(localStorage.getItem('customlaunchers')).filter(item => item !== '` + title + `'))); newinstallationsave(false);"><p id="instbtn" class="bolded">Install</p></div>`;
 
     installationscreenheader.prepend(installationscreenheadertitle);
     installationscreenfooter.appendChild(installationscreenfooterhr);
@@ -435,13 +547,25 @@ function installationdelete(title) {
     document.querySelector(".warningbutton").setAttribute("onclick", "installationdeleteconfirm('" + title + "')");
 };
 
+async function deletemc(relPath) {
+	console.log("Deleting " + relPath)
+    const result = await window.beacon.deleteFolder(relPath);
+    if (!result.ok) {
+        console.error('Delete failed: ', result.error);
+        alert('Delete failed: ', result.error);
+    }
+    return result.ok;
+}
+
 function installationdeleteconfirm(title) {
+	deletemc(JSON.parse(localStorage.getItem("c" + title)).link)
     localStorage.removeItem("c" + title);
     localStorage.removeItem(title);
     localStorage.setItem("customlaunchers", JSON.stringify(JSON.parse(localStorage.getItem("customlaunchers")).filter(item => item !== title)));
     while (installations.firstChild) {installations.removeChild(installations.firstChild)};
     generatelaunchers(launcher);
     document.getElementById('confirmationmenu').style.display = "none";
+    location.reload();
 };
 
 const installations = document.getElementById("installationsbox");
@@ -455,11 +579,10 @@ function generatelaunchers(path) {
         })}).then(() => {generatecustomlaunchers(path)});
     };
     if (localStorage.getItem("launcherpresets") == "false") {
-        let gamepath;
-        if (path === "./assets/json/base.json") {gamepath = JSON.parse(localStorage.getItem("basegame"))};
-        if (path === "./assets/json/modded.json") {gamepath = JSON.parse(localStorage.getItem("moddedgame"))};
-        if (path === "./assets/json/assisted.json") {gamepath = JSON.parse(localStorage.getItem("assisted"))};
-        generatelauncher(gamepath, path);
+        //let gamepath;
+        //if (path === "./assets/json/base.json") {gamepath = JSON.parse("[]")};
+        //if (path === "./assets/json/modded.json") {gamepath = JSON.parse("[]")};
+        //if (path === "./assets/json/assisted.json") {gamepath = JSON.parse("[]")};
         generatecustomlaunchers(path);
     };
 };
@@ -519,6 +642,7 @@ function generatelauncher(game, path) {
         const editbuttontext = document.createElement("p");
         editbuttontext.className = "bolded";
         editbuttontext.innerHTML = "Edit";
+        editbutton.style.display = "none";
         const deletebutton = document.createElement("div");
         deletebutton.className = "redbutton classicbutton";
         deletebutton.onclick = function(){installationdelete(game.title)};
@@ -905,8 +1029,10 @@ function webedition(){
     document.getElementById('header9').style.display = 'none';
     document.getElementById('header10').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
+    document.getElementById('header12').style.display = 'none';
     document.getElementById('gtabs2').classList.add('selected');
     playheader();
+    applyLauncherState(launcher);
 }
 function moddededition(){
     launcher = "./assets/json/modded.json";
@@ -922,8 +1048,10 @@ function moddededition(){
     document.getElementById('header9').style.display = 'none';
     document.getElementById('header10').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
+    document.getElementById('header12').style.display = 'none';
     document.getElementById('gtabs3').classList.add('selected');
     playheader();
+    applyLauncherState(launcher);
 }
 function eaglercontrols(){
     launcher = "./assets/json/assisted.json";
@@ -943,6 +1071,7 @@ function eaglercontrols(){
     document.getElementById('header12').style.display = 'none';
     document.getElementById('gtabs4').classList.add('selected');
     playheader();
+    applyLauncherState(launcher);
 }
 function serversmenu(){
     localStorage.setItem("startupprofile", "6");
@@ -1031,7 +1160,7 @@ function skinsheader(){
     document.getElementById('skineditor').style.display = "flex";
     document.getElementById("skinsiframe").style.display = "flex";
     document.getElementById('header5').classList.add('selected');
-    document.getElementById("skinsiframe").src = "./skineditor";
+    document.getElementById("skinsiframe").src = "./skineditor/index.html";
 }
 function patchnotesheader(){
 	localStorage.setItem("header", "patchnotes")
@@ -1173,8 +1302,14 @@ function launchnewtab() {
     };
 };
 
+async function openInstall(link) {
+  const base = await window.beacon.getMcBase();
+  const folder = link.replace(/^\.?\/?/, '').replace(/^mc\//, '').replace(/\/+$/, '');
+  window.open(`${base}/${folder}/index.html`);
+}
+
 function openmc() {
-	const w = window.open(gamelink, target)
+	const w = openInstall(gamelink)
 	if (stealthmodebox.checked) {
 		w.addEventListener('load', ()=> {
 			w.document.title = document.title;
@@ -1267,15 +1402,22 @@ function clearlocalstorage() {
     document.querySelector('.confrimationmenuscreen').classList.remove("deleteinstallation");
     document.getElementById('confirmationmenu').style.display = 'flex';
     document.querySelector(".warningtitle").innerHTML = "Clear Local Storage";
-    document.querySelector(".warningdesc").innerHTML = "This will delete all of your local storage data of the website. This will reset saved settings and installations. Continue?";
+    document.querySelector(".warningdesc").innerHTML = "This will delete all of your local storage data of the website. This will reset saved settings and wipe all installations. Continue?";
     document.querySelector(".warningbutton").setAttribute("onclick", "clearlocalstorageconfirm()");
 };
 function confirmationcancel() {
     document.getElementById('confirmationmenu').style.display = "none";
 };
+
+async function wipeMcFolder() {
+  await window.beacon.wipeMc();
+  console.log('mc folder deleted');
+}
+
 function clearlocalstorageconfirm() {
     document.getElementById('confirmationmenu').style.display = "none";
     localStorage.clear();
+    wipeMcFolder();
     location.reload();
 };
 
@@ -1283,5 +1425,7 @@ if (selectedHeader) {
 	const name = selectedHeader + "header"
 	window[name]();
 }
+
+console.log("thisworks?")
 
 generatefaqs();

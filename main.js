@@ -176,6 +176,22 @@ app.on('window-all-closed', () => {
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 }
 
+mainWindow.webContents.on('enter-html-full-screen', () => {
+  mainWindow.setFullScreen(true);
+});
+
+mainWindow.webContents.on('leave-html-full-screen', () => {
+  mainWindow.setFullScreen(false);
+});
+
+// Also make F11 toggle fullscreen as a backup exit
+mainWindow.webContents.on('before-input-event', (event, input) => {
+  if (input.type === 'keyDown' && input.key === 'F11') {
+    mainWindow.setFullScreen(!mainWindow.isFullScreen());
+    event.preventDefault();
+  }
+});
+
 // ---------- App lifecycle ----------
 
 app.whenReady().then(async () => {

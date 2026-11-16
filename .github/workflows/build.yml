@@ -1,0 +1,80 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - Offline-App
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: win32
+            icon: logo.ico
+          - os: ubuntu-latest
+            platform: linux
+            icon: logo.png
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Package app
+        run: npx electron-packager . BeaconLauncherPC --platform=${{ matrix.platform }} --arch=x64,arm64 --out=build --overwrite --icon=${{ matrix.icon }}
+
+      - name: Zip app (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $version = node -p "require('./package.json').version"
+          Get-ChildItem build -Directory | ForEach-Object {
+            Compress-Archive -Path $_.FullName -DestinationPath "$($_.Name)-$version.zip"
+          }
+
+      - name: Zip app (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          version=$(node -p "require('./package.json').version")
+          for dir in build/*/; do
+            name=$(basename "$dir")
+            (cd build && zip -r "../$name-$version.zip" "$name")
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.platform }}
+          path: "*.zip"
+          if-no-files-found: error
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*
+          generate_release_notes: true

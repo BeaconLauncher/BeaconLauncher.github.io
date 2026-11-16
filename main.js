@@ -210,7 +210,7 @@ app.on('before-quit', () => {
   setTimeout(() => app.exit(0), 2000);
 });
 
-/*
+/* Package commands
 npx electron-packager . BeaconLauncherPC --platform=linux --arch=x64,arm64 --out=build --overwrite --icon=logo.png
 npx electron-packager . BeaconLauncherPC --platform=win --arch=x64,arm64 --out=build --overwrite --icon=logo.ico
 */

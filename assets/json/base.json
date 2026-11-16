@@ -184,7 +184,7 @@
     {
        "title": "Eaglercraft rd-132211",
        "version": "rd-132211",
-       "icon": "./assets/images/mc-icons/grass-old.png.png",
+       "icon": "./assets/images/mc-icons/grass-old.png",
        "link": "./mc/rd-132211/",
        "active": false
     },

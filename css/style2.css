@@ -549,6 +549,17 @@ hr {
     font-size: 1.6vw;
 }
 
+#stars {
+  font-weight: normal;
+}
+
+#lossnumber {
+  font-weight: normal;
+}
+
+#usersnumber {
+  font-weight: normal;
+}
 
 .faqtext {
     display: flex;

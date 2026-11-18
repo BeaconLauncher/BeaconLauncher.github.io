@@ -1,4 +1,17 @@
-[  	
+[  	    
+	{
+        "title": "Hotfix: Stats tab update",
+        "version": "v1.6.11",
+        "description": "Added average rating to the stats tab",
+        "date": "November 18th, 2026",
+        "icon": "stats.png",
+        "type": "hotfix",
+        "notes": [
+            "Added the average rating of the launcher (btw: THANK YOU ALL SO MUCH FOR THE POSITIVE REVIEWS YOU DONT EVEN KNOW HOW HAPPY THESE MAKE ME)",
+            "Made users only detect if play is actually pressed",
+            "Removed herobrine"
+        ]
+    },
     {
         "title": "Site update: Stats tab",
         "version": "v1.6.1",

@@ -42,15 +42,9 @@ const stealthmodebox = document.getElementById("stealthmode");
 console.log(stealth)
 console.log(stealthmodebox.checked)
 let modslauncher
-if (!localStorage.getItem("notfirstrun")) {
-	fetch("https://analytics.dutchducksdevelopment.workers.dev/increment", {
-		method: "POST",
-	}).catch(console.error);
-}
 if (localStorage.getItem("modslauncher")) {
     modslauncher = JSON.parse(localStorage.getItem("modslauncher"))};
 if (!localStorage.getItem("launchnewtab")) {
-	localStorage.setItem("notfirstrun", true);
     localStorage.setItem("customlaunchers", "[]");
     localStorage.setItem("customlaunchersnumber", 0);
     localStorage.setItem("launcherpresets", true);
@@ -588,14 +582,39 @@ function generatefaqs() {
 };
 
 async function getstats() {
+	if (localStorage.getItem("count")) {
+		let count = localStorage.getItem("count")
+		document.getElementById("usersnumber").innerHTML = count
+		const loss = Math.round(((count / 1.2) * 30) + (count * 0.0005))
+		document.getElementById("lossnumber").innerHTML = "~ " + loss + "$"
+	} if (localStorage.getItem("stars")) {
+		let stars = localStorage.getItem("stars")
+		document.getElementById("stars").innerHTML = stars + "⭐"
+	}
 	const response = await fetch(
 	"https://analytics.dutchducksdevelopment.workers.dev/count"
-	);
+	)
 	const responsetext = await response.text();
-	const count = Math.round((Number(responsetext) + 1000) - ((Number(responsetext) + 1000) / 9))
+	const count = Math.round((Number(responsetext) + 1200) - ((Number(responsetext) + 1000) / 9))
 	document.getElementById("usersnumber").innerHTML = count
 	const loss = Math.round(((count / 1.2) * 30) + (count * 0.0005))
 	document.getElementById("lossnumber").innerHTML = "~ " + loss + "$"
+	const response2 = await fetch("https://script.google.com/macros/s/AKfycbxJrShyZ0nYFye91uYsd7HnIqS_qpgL19tUQGj3n96Zl4t0a9MVDDW8DUymrNCbkbf2yg/exec")
+	const data = await response2.json()
+	let ratings = []
+	let counter = 0
+	data.forEach(row => {
+		counter = counter + 1
+		ratings.push(Number(row["How many stars do you rate BeaconLauncher?"]));
+	});
+	console.log(ratings)
+	const sum1 = ratings.reduce((sum, number) => sum + number, 0);
+	const sum2 = (sum1 / counter)
+	const total = Math.round(sum2 * 2) / 2
+	console.log(total)
+	document.getElementById("stars").innerHTML = total + "⭐"
+	localStorage.setItem("stars", total)
+	localStorage.setItem("count", count)
 };
 
 const notes = document.getElementById("patchnotesbox");
@@ -1201,7 +1220,13 @@ function launchnewtab() {
     };
 };
 
-function openmc() {
+async function openmc() {
+	if (!localStorage.getItem("notfirstrun")) {
+		await fetch("https://analytics.dutchducksdevelopment.workers.dev/increment", {
+			method: "POST",
+		}).catch(console.error);
+	}
+	localStorage.setItem("notfirstrun", true)
 	const w = window.open(gamelink, target)
 	if (stealthmodebox.checked) {
 		w.addEventListener('load', ()=> {

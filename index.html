@@ -91,7 +91,7 @@
         <div id="gtabs6" class="sidebarOptions sidebarBottom" onclick="settingsmenu()">
             <img src="./assets/images/sidebar/m-settings.png"><div class="gTabsText"><p> Settings</p></div>
         </div>
-        <div class="launcherVersion"><p>v1.6.1</p></div>
+        <div class="launcherVersion"><p>v1.6.11</p></div>
     </div>
     <div class="mainPage">
         <div class="gameHeader">
@@ -131,7 +131,7 @@
 					<div class="bolded statstext">
 						<p>All-time users:</p>
 						<div class="statstext">
-							<p id="usersnumber"></p>
+							<p id="usersnumber">Loading...</p>
 						</div>
 					</div>
 				</div>
@@ -139,8 +139,19 @@
 					<div class="bolded statstext">
 						<p>Estimated amount of money Microsoft has lost to my website 😁:</p>
 						<div class="statstext">
-							<p id="lossnumber"></p>
+							<p id="lossnumber">Loading...</p>
 						</div>
+					</div>
+				</div>
+				<div class="statsoption">
+					<div class="bolded statstext">
+						<p>Average rating:</p>
+						<div class="statstext">
+							<p id="stars">Loading...</p>
+						</div>
+							<div class="classicbutton" id="review" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScu0EeJLukO-5I8OsG2C_WSZKJWWv-99ul2qigEpwYhf_Isvg/viewform'">
+							<p class="bolded">Review the Launcher</p>
+						</div> 
 					</div>
 				</div>
 			</div>
@@ -235,7 +246,7 @@
         </div>
         <div id="settings">
             <div id="generalsettings">
-				<div id="settingsbuttons" style="display: flex; gap: 10px;">
+				<div id="settingsbuttons" style="display: flex; gap: 10px; padding-left: 0vw;">
 					<div class="classicbutton" id="review" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScu0EeJLukO-5I8OsG2C_WSZKJWWv-99ul2qigEpwYhf_Isvg/viewform'">
 	                    <p class="bolded">Review the Launcher</p>
 	                </div> <br>
@@ -267,8 +278,8 @@
                 </div>
                 <hr>
                 <p class="bolded settingstitle">UI</p>
-                <p class="settingsdetails">v1.6.1</p>
-                <p class="settingsdetails">November 17th, 2026</p>
+                <p class="settingsdetails">v1.6.11</p>
+                <p class="settingsdetails">November 18th, 2026</p>
                 <hr>
                 <p class="bolded settingstitle">LEGAL AND CREDITS</p>
                 <p class="settingsdetails">This website is not affiliated with Mojang.</p>

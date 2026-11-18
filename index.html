@@ -91,7 +91,7 @@
         <div id="gtabs6" class="sidebarOptions sidebarBottom" onclick="settingsmenu()">
             <img src="./assets/images/sidebar/m-settings.png"><div class="gTabsText"><p> Settings</p></div>
         </div>
-        <div class="launcherVersion"><p>v1.6.0</p></div>
+        <div class="launcherVersion"><p>v1.6.11</p></div>
     </div>
     <div class="mainPage">
         <div class="gameHeader">
@@ -100,6 +100,7 @@
                     <li id="header1" class="headerButtons selected" onclick="playheader()">Play</li>
                     <li id="header2" class="headerButtons" onclick="modsheader()">Mods</li>
                     <li id="header3" class="headerButtons" onclick="faqsheader()">FAQ</li>
+                    <li id="header13" class="headerButtons" onclick="statsheader()">Stats</li>
                     <li id="header4" class="headerButtons" onclick="installationheader()">Installations</li>
                     <li id="header5" class="headerButtons" onclick="skinsheader()">Skins</li>
                     <li id="header6" class="headerButtons" onclick="patchnotesheader()">Patch Notes</li>
@@ -121,6 +122,39 @@
             <p class="bolded faqtitle">Frequently Asked Questions</p>
             <p>Here are some frequently asked questions about Beacon Launcher.</p>
             <div id="faqbox"></div>
+        </div>
+        <div id="stats">
+            <p class="bolded statstitle">Site Statistics</p>
+            <p>These are the stats of Beacon Launcher.</p>
+            <div id="statsbox">
+				<div class="statsoption">
+					<div class="bolded statstext">
+						<p>All-time users:</p>
+						<div class="statstext">
+							<p id="usersnumber">Loading...</p>
+						</div>
+					</div>
+				</div>
+				<div class="statsoption">
+					<div class="bolded statstext">
+						<p>Estimated amount of money Microsoft has lost to my website 😁:</p>
+						<div class="statstext">
+							<p id="lossnumber">Loading...</p>
+						</div>
+					</div>
+				</div>
+				<div class="statsoption">
+					<div class="bolded statstext">
+						<p>Average rating:</p>
+						<div class="statstext">
+							<p id="stars">Loading...</p>
+						</div>
+							<div class="classicbutton" id="review" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScu0EeJLukO-5I8OsG2C_WSZKJWWv-99ul2qigEpwYhf_Isvg/viewform'">
+							<p class="bolded">Review the Launcher</p>
+						</div> 
+					</div>
+				</div>
+			</div>
         </div>
         <div id="installations">
             <div class="newinstallation">
@@ -241,8 +275,8 @@
                 </div>
                 <hr>
                 <p class="bolded settingstitle">UI</p>
-                <p class="settingsdetails">v1.6.0</p>
-                <p class="settingsdetails">November 15th, 2026</p>
+                <p class="settingsdetails">v1.6.11</p>
+                <p class="settingsdetails">November 18th, 2026</p>
                 <hr>
                 <p class="bolded settingstitle">LEGAL AND CREDITS</p>
                 <p class="settingsdetails">This application is not affiliated with Mojang.</p>

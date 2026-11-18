@@ -19,9 +19,19 @@ jobs:
         include:
           - os: windows-latest
             platform: win32
+            arch: x64
+            icon: logo.ico
+          - os: windows-latest
+            platform: win32
+            arch: arm64
             icon: logo.ico
           - os: ubuntu-latest
             platform: linux
+            arch: x64
+            icon: logo.png
+          - os: ubuntu-latest
+            platform: linux
+            arch: arm64
             icon: logo.png
 
     runs-on: ${{ matrix.os }}
@@ -37,7 +47,7 @@ jobs:
       - run: npm ci
 
       - name: Package app
-        run: npx electron-packager . BeaconLauncherPC --platform=${{ matrix.platform }} --arch=x64,arm64 --out=build --overwrite --icon=${{ matrix.icon }}
+        run: npx electron-packager . BeaconLauncherPC --platform=${{ matrix.platform }} --arch=${{ matrix.arch }} --out=build --overwrite --icon=${{ matrix.icon }}
 
       - name: Zip app (Windows)
         if: runner.os == 'Windows'
@@ -60,9 +70,10 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.platform }}
+          name: ${{ matrix.platform }}-${{ matrix.arch }}
           path: "*.zip"
           if-no-files-found: error
+
 
   release:
     needs: build

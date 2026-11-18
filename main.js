@@ -1,8 +1,7 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const http = require('http');
-const { dialog } = require('electron');
 
 // Where Eaglercraft installs are stored: resources/app/mc
 const MC_ROOT = path.join(app.getAppPath(), 'mc');
@@ -11,16 +10,32 @@ let mainWindow = null;
 let staticServer = null;
 let mcPort = null;
 
+// Resolve a path and ensure it stays inside the specified root.
+function resolveInside(root, relativePath) {
+  const resolvedRoot = path.resolve(root);
+  const resolvedPath = path.resolve(resolvedRoot, relativePath);
+  const relative = path.relative(resolvedRoot, resolvedPath);
+
+  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+    throw new Error('Invalid path');
+  }
+
+  return resolvedPath;
+}
+
 // ---------- IPC: file saving ----------
 
-ipcMain.handle('save-file', async (event, relPath, data) => {
-  // Strip leading ./ and mc/ so files don't end up in mc/mc
-  const cleanPath = relPath.replace(/^\.?\/?/, '').replace(/^mc\//, '');
-  const fullPath = path.normalize(path.join(MC_ROOT, cleanPath));
-
-  if (!fullPath.startsWith(MC_ROOT)) {
-    throw new Error('Invalid path: ' + relPath);
+ipcMain.handle('save-file', async (_event, relPath, data) => {
+  if (typeof relPath !== 'string') {
+    throw new Error('Invalid path');
   }
+
+  // Strip leading ./ and mc/ so files don't end up in mc/mc.
+  const cleanPath = relPath
+    .replace(/^\.?\/?/, '')
+    .replace(/^mc\//, '');
+
+  const fullPath = resolveInside(MC_ROOT, cleanPath);
 
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });
   fs.writeFileSync(fullPath, Buffer.from(data));
@@ -34,30 +49,42 @@ ipcMain.handle('wipe-mc', async () => {
     fs.mkdirSync(MC_ROOT, { recursive: true });
     return true;
   }
+
   for (const entry of fs.readdirSync(MC_ROOT)) {
-    fs.rmSync(path.join(MC_ROOT, entry), { recursive: true, force: true });
+    fs.rmSync(path.join(MC_ROOT, entry), {
+      recursive: true,
+      force: true
+    });
   }
+
   return true;
 });
 
 // ---------- IPC: wipe installation ----------
 
-ipcMain.handle('delete-folder', (event, relPath) => {
-    const target = path.join(app.getAppPath(), relPath);
+ipcMain.handle('delete-folder', (_event, relPath) => {
+  if (typeof relPath !== 'string') {
+    return { ok: false, error: 'Invalid path' };
+  }
 
-	console.log("deleting from main.js")
-	
-    try {
-        fs.rmSync(target, { recursive: true, force: true });
-        return { ok: true };
-    } catch (err) {
-        return { ok: false, error: err.message };
-    }
+  try {
+    const target = resolveInside(app.getAppPath(), relPath);
+    fs.rmSync(target, { recursive: true, force: true });
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  }
 });
 
 // ---------- IPC: give the renderer the local server address ----------
 
-ipcMain.handle('get-mc-base', () => `http://127.0.0.1:${mcPort}`);
+ipcMain.handle('get-mc-base', () => {
+  if (!mcPort) {
+    throw new Error('The local server is not running');
+  }
+
+  return `http://127.0.0.1:${mcPort}`;
+});
 
 // ---------- Local static server for installs ----------
 
@@ -81,34 +108,72 @@ const MIME = {
 };
 
 function startStaticServer() {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     staticServer = http.createServer((req, res) => {
-      let urlPath = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
-      if (urlPath.endsWith('/')) urlPath += 'index.html';
+      let urlPath;
 
-      const filePath = path.normalize(path.join(MC_ROOT, urlPath));
-      if (!filePath.startsWith(MC_ROOT)) {
+      try {
+        urlPath = decodeURIComponent(
+          new URL(req.url, 'http://localhost').pathname
+        );
+      } catch {
+        res.writeHead(400);
+        res.end('Bad request');
+        return;
+      }
+
+      if (urlPath.endsWith('/')) {
+        urlPath += 'index.html';
+      }
+
+      // Remove the URL's leading slash before resolving it under MC_ROOT.
+      const relativePath = urlPath.replace(/^\/+/, '');
+
+      let filePath;
+      try {
+        filePath = resolveInside(MC_ROOT, relativePath);
+      } catch {
         res.writeHead(403);
-        return res.end('Forbidden');
+        res.end('Forbidden');
+        return;
       }
 
       fs.readFile(filePath, (err, data) => {
         if (err) {
           res.writeHead(404);
-          return res.end('Not found');
+          res.end('Not found');
+          return;
         }
+
         res.writeHead(200, {
-          'Content-Type': MIME[path.extname(filePath).toLowerCase()] || 'application/octet-stream'
+          'Content-Type':
+            MIME[path.extname(filePath).toLowerCase()] ||
+            'application/octet-stream'
         });
         res.end(data);
       });
     });
 
-    // Port 0 lets the OS pick a free port
-    staticServer.listen(8498, '127.0.0.1', () => {
+    staticServer.once('error', reject);
+
+    // Port 0 lets the OS choose an available port.
+    staticServer.listen(0, '127.0.0.1', () => {
+      staticServer.removeListener('error', reject);
       resolve(staticServer.address().port);
     });
   });
+}
+
+function stopServer() {
+  if (!staticServer) return;
+
+  if (typeof staticServer.closeAllConnections === 'function') {
+    staticServer.closeAllConnections();
+  }
+
+  staticServer.close();
+  staticServer = null;
+  mcPort = null;
 }
 
 // ---------- Main window ----------
@@ -125,23 +190,38 @@ function createWindow() {
   });
 
   mainWindow.webContents.on('did-finish-load', () => {
-    mainWindow.webContents.setZoomFactor(0.9);
+    mainWindow?.webContents.setZoomFactor(0.9);
   });
-  
-function stopServer() {
-  if (staticServer) {
-    staticServer.closeAllConnections();
-    staticServer.close();
-    staticServer = null;
-    app.quit()
-  }
+
+  mainWindow.webContents.on('enter-html-full-screen', () => {
+    mainWindow?.setFullScreen(true);
+  });
+
+  mainWindow.webContents.on('leave-html-full-screen', () => {
+    mainWindow?.setFullScreen(false);
+  });
+
+  // Also make F11 toggle fullscreen as a backup exit.
+  mainWindow.webContents.on('before-input-event', (event, input) => {
+    if (input.type === 'keyDown' && input.key === 'F11' && mainWindow) {
+      mainWindow.setFullScreen(!mainWindow.isFullScreen());
+      event.preventDefault();
+    }
+  });
+
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
+
+  mainWindow.loadFile(path.join(__dirname, 'index.html'));
 }
 
-app.on('web-contents-created', (event, contents) => {
-  contents.on('will-prevent-unload', async (e) => {
-    e.preventDefault(); // stop Eaglercraft's own block...
+// Handle Eaglercraft's beforeunload prompt.
+app.on('web-contents-created', (_event, contents) => {
+  contents.on('will-prevent-unload', async (event) => {
+    event.preventDefault();
 
-    const win = e.sender.getOwnerBrowserWindow();
+    const win = contents.getOwnerBrowserWindow();
     if (!win) return;
 
     const choice = await dialog.showMessageBox(win, {
@@ -154,60 +234,33 @@ app.on('web-contents-created', (event, contents) => {
     });
 
     if (choice.response === 0) {
-      win.destroy(); // destroy() closes without triggering beforeunload again
+      win.destroy();
     }
   });
 });
 
-app.on('before-quit', () => {
-  stopServer();
-});
+// ---------- App lifecycle ----------
 
-app.on('window-all-closed', () => {
-  stopServer();
-  app.exit(0);
-});
-
-  mainWindow.on('closed', () => {
-    mainWindow = null;
+app.whenReady()
+  .then(async () => {
+    await fs.promises.mkdir(MC_ROOT, { recursive: true });
+    mcPort = await startStaticServer();
+    createWindow();
+  })
+  .catch((err) => {
+    console.error('Failed to start application:', err);
     app.quit();
   });
 
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
-}
+app.on('before-quit', () => {
+  stopServer();
 
-mainWindow.webContents.on('enter-html-full-screen', () => {
-  mainWindow.setFullScreen(true);
-});
-
-mainWindow.webContents.on('leave-html-full-screen', () => {
-  mainWindow.setFullScreen(false);
-});
-
-// Also make F11 toggle fullscreen as a backup exit
-mainWindow.webContents.on('before-input-event', (event, input) => {
-  if (input.type === 'keyDown' && input.key === 'F11') {
-    mainWindow.setFullScreen(!mainWindow.isFullScreen());
-    event.preventDefault();
-  }
-});
-
-// ---------- App lifecycle ----------
-
-app.whenReady().then(async () => {
-  mcPort = await startStaticServer();
-  createWindow();
+  // Force close if a game loop prevents graceful shutdown.
+  setTimeout(() => app.exit(0), 2000);
 });
 
 app.on('window-all-closed', () => {
   app.quit();
-});
-
-app.on('before-quit', () => {
-  if (staticServer) staticServer.close();
-
-  // Force close if a game loop freezes the graceful shutdown
-  setTimeout(() => app.exit(0), 2000);
 });
 
 /* Package commands

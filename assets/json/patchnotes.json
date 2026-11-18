@@ -1,5 +1,18 @@
 [  	
     {
+        "title": "Site update: Stats tab",
+        "version": "v1.6.1",
+        "description": "Made a statistics tab to see how much I've annoyed Microsoft (:",
+        "date": "November 17th, 2026",
+        "icon": "stats.png",
+        "type": "site",
+        "notes": [
+            "Added a backend server to track new users",
+            "Added a stats header to the website to see how many unique users the site has and how many dollars I've cost Microsoft",
+            "Removed herobrine"
+        ]
+    },
+    {
         "title": "App update: Offline app 2.0!",
         "version": "v1.6.0",
         "description": "Made the app for BeaconLauncher not be an half-working zip file",

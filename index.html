@@ -13,8 +13,8 @@
     <!-- Discord-->
     <meta content="Beacon Launcher" property="og:title">
     <meta content="A minecraft themed launcher for Eaglercraft!" property="og:description">
-    <meta content="https://eaglerlauncher.github.io/" property="og:url">
-    <meta content="https://eaglerlauncher.github.io/assets/images/logo.png" property="og:image">
+    <meta content="https://beaconlauncher.github.io/" property="og:url">
+    <meta content="https://beaconlauncher.github.io/assets/images/logo.png" property="og:image">
     <meta content="#786d81" data-react-helmet="true" name="theme-color">
 
 </head>
@@ -91,7 +91,7 @@
         <div id="gtabs6" class="sidebarOptions sidebarBottom" onclick="settingsmenu()">
             <img src="./assets/images/sidebar/m-settings.png"><div class="gTabsText"><p> Settings</p></div>
         </div>
-        <div class="launcherVersion"><p>v1.5.52</p></div>
+        <div class="launcherVersion"><p>v1.6.1</p></div>
     </div>
     <div class="mainPage">
         <div class="gameHeader">
@@ -100,6 +100,7 @@
                     <li id="header1" class="headerButtons selected" onclick="playheader()">Play</li>
                     <li id="header2" class="headerButtons" onclick="modsheader()">Mods</li>
                     <li id="header3" class="headerButtons" onclick="faqsheader()">FAQ</li>
+                    <li id="header13" class="headerButtons" onclick="statsheader()">Stats</li>
                     <li id="header4" class="headerButtons" onclick="installationheader()">Installations</li>
                     <li id="header5" class="headerButtons" onclick="skinsheader()">Skins</li>
                     <li id="header6" class="headerButtons" onclick="patchnotesheader()">Patch Notes</li>
@@ -121,6 +122,28 @@
             <p class="bolded faqtitle">Frequently Asked Questions</p>
             <p>Here are some frequently asked questions about Beacon Launcher.</p>
             <div id="faqbox"></div>
+        </div>
+        <div id="stats">
+            <p class="bolded statstitle">Site Statistics</p>
+            <p>These are the stats of Beacon Launcher.</p>
+            <div id="statsbox">
+				<div class="statsoption">
+					<div class="bolded statstext">
+						<p>All-time users:</p>
+						<div class="statstext">
+							<p id="usersnumber"></p>
+						</div>
+					</div>
+				</div>
+				<div class="statsoption">
+					<div class="bolded statstext">
+						<p>Estimated amount of money Microsoft has lost to my website 😁:</p>
+						<div class="statstext">
+							<p id="lossnumber"></p>
+						</div>
+					</div>
+				</div>
+			</div>
         </div>
         <div id="installations">
             <div class="newinstallation">
@@ -244,8 +267,8 @@
                 </div>
                 <hr>
                 <p class="bolded settingstitle">UI</p>
-                <p class="settingsdetails">v1.5.52</p>
-                <p class="settingsdetails">November 15th, 2026</p>
+                <p class="settingsdetails">v1.6.1</p>
+                <p class="settingsdetails">November 17th, 2026</p>
                 <hr>
                 <p class="bolded settingstitle">LEGAL AND CREDITS</p>
                 <p class="settingsdetails">This website is not affiliated with Mojang.</p>

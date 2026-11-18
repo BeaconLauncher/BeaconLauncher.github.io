@@ -42,9 +42,15 @@ const stealthmodebox = document.getElementById("stealthmode");
 console.log(stealth)
 console.log(stealthmodebox.checked)
 let modslauncher
+if (!localStorage.getItem("notfirstrun")) {
+	fetch("https://analytics.dutchducksdevelopment.workers.dev/increment", {
+		method: "POST",
+	}).catch(console.error);
+}
 if (localStorage.getItem("modslauncher")) {
     modslauncher = JSON.parse(localStorage.getItem("modslauncher"))};
 if (!localStorage.getItem("launchnewtab")) {
+	localStorage.setItem("notfirstrun", true);
     localStorage.setItem("customlaunchers", "[]");
     localStorage.setItem("customlaunchersnumber", 0);
     localStorage.setItem("launcherpresets", true);
@@ -581,6 +587,17 @@ function generatefaqs() {
     })
 };
 
+async function getstats() {
+	const response = await fetch(
+	"https://analytics.dutchducksdevelopment.workers.dev/count"
+	);
+	const responsetext = await response.text();
+	const count = Math.round((Number(responsetext) + 1000) - ((Number(responsetext) + 1000) / 9))
+	document.getElementById("usersnumber").innerHTML = count
+	const loss = Math.round(((count / 1.2) * 30) + (count * 0.0005))
+	document.getElementById("lossnumber").innerHTML = "~ " + loss + "$"
+};
+
 const notes = document.getElementById("patchnotesbox");
 const externalmenu = document.getElementById("externalmenu");
 function generatenotes() {
@@ -959,6 +976,7 @@ function serversmenu(){
     document.getElementById('header9').style.display = 'none';
     document.getElementById('header10').style.display = 'none';
     document.getElementById('header12').style.display = 'none';
+    document.getElementById('header13').style.display = 'none';
     document.getElementById('gtabs7').classList.add('selected');
     serversheader();
 }
@@ -976,6 +994,7 @@ function creditsmenu(){
     document.getElementById('header10').style.display = 'none';
     document.getElementById('header12').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
+    document.getElementById('header13').style.display = 'none';
     document.getElementById('gtabs5').classList.add('selected');
     contributorsheader();
 }
@@ -991,6 +1010,7 @@ function settingsmenu(){
     document.getElementById('header6').style.display = 'none';
     document.getElementById('header7').style.display = 'none';
     document.getElementById('header12').style.display = 'none';
+    document.getElementById('header13').style.display = 'none';
     document.getElementById('header8').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
     document.getElementById('gtabs6').classList.add('selected');
@@ -1018,6 +1038,13 @@ function faqsheader(){
     resetHeaderSelected();
     document.getElementById('faq').style.display = "flex";
     document.getElementById('header3').classList.add('selected');
+}
+function statsheader(){
+	localStorage.setItem("header", "stats")
+    resetHeaderSelected();
+    document.getElementById('stats').style.display = "flex";
+    document.getElementById('header13').classList.add('selected');
+    getstats();
 }
 function installationheader(){
 	localStorage.setItem("header", "installation")
@@ -1101,7 +1128,7 @@ function resetTabSelected() {
         let gtabs = document.getElementById('gtabs' + [i]);
         gtabs.classList.remove('selected');
     };
-    for (var i = 1; i < 13; i++) { 
+    for (var i = 1; i < 14; i++) { 
         let headers = document.getElementById('header' + [i]);
         headers.style.display = "block";
     };
@@ -1113,7 +1140,7 @@ function resetHeaderSelected() {
     while (dropdown.firstChild) {dropdown.removeChild(dropdown.firstChild)};
     while (mods.firstChild) {mods.removeChild(mods.firstChild)};
     while (notes.firstChild) {notes.removeChild(notes.firstChild)};
-    for (var i = 1; i < 13; i++) { 
+    for (var i = 1; i < 14; i++) { 
         let headers = document.getElementById('header' + [i]);
         headers.classList.remove('selected'); 
     };
@@ -1121,6 +1148,7 @@ function resetHeaderSelected() {
     document.getElementById('gameSelection').style.display = "none";
     document.getElementById('mods').style.display = "none";
     document.getElementById('faq').style.display = "none";
+    document.getElementById('stats').style.display = "none";
     document.getElementById('installations').style.display = "none";
     document.getElementById('patchNotes').style.display = "none";
     document.getElementById('credits').style.display = "none";
@@ -1222,14 +1250,12 @@ function stealthmode() {
   		document.getElementById('launchnewtab').disabled = true;
 		setstealth()
     	localStorage.setItem("stealth", true)
-
   	} else {
   		document.getElementById("stealthinput").style.display = "none";
   		document.getElementById('launchnewtab').disabled = false;
    		document.querySelector("link[rel*='icon']").href = './assets/images/logo.png';
    		document.title = "Beacon Launcher";
    		localStorage.setItem("stealth", false)
-
   	}
 }
 
@@ -1276,6 +1302,7 @@ function confirmationcancel() {
 function clearlocalstorageconfirm() {
     document.getElementById('confirmationmenu').style.display = "none";
     localStorage.clear();
+    localStorage.setItem("notfirstrun", true);
     location.reload();
 };
 
@@ -1285,3 +1312,4 @@ if (selectedHeader) {
 }
 
 generatefaqs();
+

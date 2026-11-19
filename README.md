@@ -3,8 +3,9 @@
  A minecraft themed launcher for Eaglercraft!<br>
  Containing some of the best clients all in one place!
 
-> [!NOTE]
-> This website will soon move to [beaconlauncher.online](https://www.beaconlauncher.online)
+> [!IMPORTANT]
+> This website will soon move to [beaconlauncher.online](https://www.beaconlauncher.online) <br>
+> This will delete all your settings and worlds in Eaglercraft, so make sure to export your worlds.
 
 <hr>
 

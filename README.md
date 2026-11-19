@@ -64,15 +64,14 @@
 
 ## Credits
 irv77:
-- made the gui for Ampler Launcher, which Eagler Launcher is a fork of
+- made the gui for Ampler Launcher, which Beacon Launcher is a fork of
 - made the eaglercraft itself work in Ampler Launcher
 
 Dutch Ducks Development:
-- forked Ampler Launcher into Eagler Launcher
-- removed unstable/not working features
+- forked Ampler Launcher into Beacon Launcher
 - added an offline app
 - added many new clients and modpacks into the launcher
-- added a server screen
+- added servers screen, downloads screen, and stats screen
 
 TheCreationKing:
 - made the skin editor

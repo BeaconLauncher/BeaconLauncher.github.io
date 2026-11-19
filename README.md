@@ -3,12 +3,18 @@
  A minecraft themed launcher for Eaglercraft!<br>
  Containing some of the best clients all in one place!
 
+> [!NOTE]
+> This website will soon move to [beaconlauncher.online](https://www.beaconlauncher.online)
+
+<hr>
 
 <img src=".github/assets/launcher.png"><br>
 
 <hr>
 
  ## Versions
+ __v1.6.1__ - Added a stats tab
+ __v1.6.0__ - Made a proper offline app
  __v1.5.5__ - Rebranded the launcher to Beacon Launcher <br>
  __v1.5.4__ - Added downloads tab where you can download offline .html files of some eaglercraft versions <br>
  __v1.5.3__ - Moved the entire repo to EaglerLauncher.github.io, Added a server screen and made the skin editor into its own tab<br>

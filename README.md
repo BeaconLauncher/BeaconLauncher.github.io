@@ -4,7 +4,7 @@
  Containing some of the best clients all in one place!
 
 > [!IMPORTANT]
-> This website will soon move to [beaconlauncher.online](www.beaconlauncher.online) <br>
+> This website will soon move to [beaconlauncher.online](http://www.beaconlauncher.online) <br>
 > This will delete all your settings and worlds in Eaglercraft, so make sure to export your worlds.
 
 <hr>

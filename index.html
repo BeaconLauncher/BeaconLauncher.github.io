@@ -98,7 +98,7 @@
         <div id="gtabs6" class="sidebarOptions sidebarBottom" onclick="settingsmenu()">
             <img src="./assets/images/sidebar/m-settings.png"><div class="gTabsText"><p> Settings</p></div>
         </div>
-        <div class="launcherVersion"><p>v1.6.11</p></div>
+        <div class="launcherVersion"><p>v1.6.12</p></div>
     </div>
     <div class="mainPage">
         <div class="gameHeader">
@@ -242,14 +242,14 @@
                     </div>
                         <img src="./assets/images/icons/eaglercraft.png">
                 </div>
-                <div class="contributortile">
+                <div class="creditstile">
                     <div class="contributorside">
                         <p class="bolded contributoruser">TheCreationKing</p>
                         <p class="contributordescription">Made the skin editor</p>
                     </div>
                         <img src="./assets/images/credits/TheCreationKing.png">
                 </div>
-                <div class="contributortile">
+                <div class="creditstile">
                     <div class="contributorside">
                         <p class="bolded contributoruser">StarlightGG</p>
                         <p class="contributordescription">Made themes and more open game options (ported from GX Launcher)</p>
@@ -271,6 +271,7 @@
                 <p class="bolded settingstitle">LAUNCHER SETTINGS</p>
                 <div class="settingoption"><input id="launcherpresets" class="settingsbox" type="checkbox" onchange="presetlaunchers()"><p>Preset installations</p></div>
                 <div class="settingoption"><input id="stealthmode" class="settingsbox" type="checkbox" onchange="stealthmode()"><p>Stealth mode</p></div>
+                <input id="stealthinput" type="text" autocomplete="off" placeholder="https://docs.google.com" value="https://docs.google.com" onkeyup="if (event.key === 'Enter') stealthnamechange()">
                 <p class="bolded settingstitle">LAUNCH MODE</p>
                 <p class="settingsdesc">How the game opens when you press Play.</p>
                 <div class="settingcards" id="launchmodecards">
@@ -289,7 +290,6 @@
                     <div class="settingcard compact" data-themename="gold" onclick="settheme('gold')"><span class="themedot" style="background: #b8860b;"></span><p class="bolded">Gold</p></div>
                     <div class="settingcard compact" data-themename="midnight" onclick="settheme('midnight')"><span class="themedot" style="background: #2a6fb8;"></span><p class="bolded">Midnight</p></div>
                 </div>
-                <input id="stealthinput" type="text" autocomplete="off" placeholder="https://docs.google.com" value="https://docs.google.com" onkeyup="if (event.key === 'Enter') stealthnamechange()">
                 <p class="bolded settingstitle">LAUNCHER USERNAME</p>
                 <input id="usernameinput" type="text" autocomplete="off" placeholder="Username" onkeyup="usernamechange()">
                 <div class="clearstoragebutton" onclick="clearlocalstorage()">
@@ -307,8 +307,8 @@
                 </div>
                 <hr>
                 <p class="bolded settingstitle">UI</p>
-                <p class="settingsdetails">v1.6.11</p>
-                <p class="settingsdetails">November 18th, 2026</p>
+                <p class="settingsdetails">v1.6.12</p>
+                <p class="settingsdetails">November 20th, 2026</p>
                 <hr>
                 <p class="bolded settingstitle">LEGAL AND CREDITS</p>
                 <p class="settingsdetails">This website is not affiliated with Mojang.</p>

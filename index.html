@@ -242,14 +242,14 @@
                     </div>
                         <img src="./assets/images/icons/eaglercraft.png">
                 </div>
-                <div class="creditstile">
+                <div class="credittile">
                     <div class="contributorside">
                         <p class="bolded contributoruser">TheCreationKing</p>
                         <p class="contributordescription">Made the skin editor</p>
                     </div>
                         <img src="./assets/images/credits/TheCreationKing.png">
                 </div>
-                <div class="creditstile">
+                <div class="credittile">
                     <div class="contributorside">
                         <p class="bolded contributoruser">StarlightGG</p>
                         <p class="contributordescription">Made themes and more open game options (ported from GX Launcher)</p>
@@ -258,9 +258,9 @@
                 </div>
             </div>
         </div>
-        <div id="settings" style="overflow-y: scroll;">
+        <div id="settings">
             <div id="generalsettings">
-				<div id="settingsbuttons" style="display: flex; gap: 10px; padding-left: 0vw;">
+				<div id="settingsbuttons" style="display: flex; gap: 10px; padding-left: 0vw; padding: 0.5vw;">
 					<div class="classicbutton" id="review" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScu0EeJLukO-5I8OsG2C_WSZKJWWv-99ul2qigEpwYhf_Isvg/viewform'">
 	                    <p class="bolded">Review the Launcher</p>
 	                </div> <br>
@@ -268,7 +268,7 @@
 	                    <p class="bolded">Download offline version</p>
 	                </div>
 				</div>
-                <p class="bolded settingstitle">LAUNCHER SETTINGS</p>
+                <p class="bolded settingstitle" style="padding-top: 0.65vw;">LAUNCHER SETTINGS</p>
                 <div class="settingoption"><input id="launcherpresets" class="settingsbox" type="checkbox" onchange="presetlaunchers()"><p>Preset installations</p></div>
                 <div class="settingoption"><input id="stealthmode" class="settingsbox" type="checkbox" onchange="stealthmode()"><p>Stealth mode</p></div>
                 <input id="stealthinput" type="text" autocomplete="off" placeholder="https://docs.google.com" value="https://docs.google.com" onkeyup="if (event.key === 'Enter') stealthnamechange()">

@@ -1100,6 +1100,7 @@ hr {
 
 #generalsettings {
     display: block;
+    overflow-y: scroll;
 }
 
 #generalsettings .settingstitle {
@@ -1116,7 +1117,7 @@ hr {
 
 #settingsbuttons {
 	align-items: center;
-	padding: 1vw;
+	padding: 0.5vw;
 }
 
 .settingoption p {

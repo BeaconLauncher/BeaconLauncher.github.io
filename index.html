@@ -220,13 +220,6 @@
                     </div>
                         <img src="./assets/images/credits/DDD.png">
                 </div>
-                <div class="contributortile">
-                    <div class="contributorside">
-                        <p class="bolded contributoruser">TheCreationKing</p>
-                        <p class="contributordescription">Made the skin editor</p>
-                    </div>
-                        <img src="./assets/images/credits/TheCreationKing.png">
-                </div>
             </div>
         </div>
         <div id="credits">
@@ -249,6 +242,20 @@
                     </div>
                         <img src="./assets/images/icons/eaglercraft.png">
                 </div>
+                <div class="contributortile">
+                    <div class="contributorside">
+                        <p class="bolded contributoruser">TheCreationKing</p>
+                        <p class="contributordescription">Made the skin editor</p>
+                    </div>
+                        <img src="./assets/images/credits/TheCreationKing.png">
+                </div>
+                <div class="contributortile">
+                    <div class="contributorside">
+                        <p class="bolded contributoruser">StarlightGG</p>
+                        <p class="contributordescription">Made themes and more open game options (ported from GX Launcher)</p>
+                    </div>
+                        <img src="./assets/images/credits/StarlightGG.png">
+                </div>
             </div>
         </div>
         <div id="settings">
@@ -263,6 +270,7 @@
 				</div>
                 <p class="bolded settingstitle">LAUNCHER SETTINGS</p>
                 <div class="settingoption"><input id="launcherpresets" class="settingsbox" type="checkbox" onchange="presetlaunchers()"><p>Preset installations</p></div>
+                <div class="settingoption"><input id="stealthmode" class="settingsbox" type="checkbox" onchange="stealthmode()"><p>Stealth mode</p></div>
                 <p class="bolded settingstitle">LAUNCH MODE</p>
                 <p class="settingsdesc">How the game opens when you press Play.</p>
                 <div class="settingcards" id="launchmodecards">
@@ -281,7 +289,6 @@
                     <div class="settingcard compact" data-themename="gold" onclick="settheme('gold')"><span class="themedot" style="background: #b8860b;"></span><p class="bolded">Gold</p></div>
                     <div class="settingcard compact" data-themename="midnight" onclick="settheme('midnight')"><span class="themedot" style="background: #2a6fb8;"></span><p class="bolded">Midnight</p></div>
                 </div>
-                <div class="settingoption"><input id="stealthmode" class="settingsbox" type="checkbox" onchange="stealthmode()"><p>Stealth mode</p></div>
                 <input id="stealthinput" type="text" autocomplete="off" placeholder="https://docs.google.com" value="https://docs.google.com" onkeyup="if (event.key === 'Enter') stealthnamechange()">
                 <p class="bolded settingstitle">LAUNCHER USERNAME</p>
                 <input id="usernameinput" type="text" autocomplete="off" placeholder="Username" onkeyup="usernamechange()">

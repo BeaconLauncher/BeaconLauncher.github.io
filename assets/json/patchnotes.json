@@ -1,4 +1,17 @@
-[  	    
+[  	
+	{
+        "title": "Hotfix: New version and more settings",
+        "version": "v1.6.12",
+        "description": "Added Eaglercraft 1.16.5 and more settings",
+        "date": "November 20th, 2026",
+        "icon": "/mc/crimson-nylium-wasm.png",
+        "type": "hotfix",
+        "notes": [
+            "Added Eaglercraft 1.16.5",
+            "Ported the additional settings from StarlightGG's Ampler Launcher fork",
+            "Removed herobrine"
+        ]
+    },
 	{
         "title": "Hotfix: Stats tab update",
         "version": "v1.6.11",

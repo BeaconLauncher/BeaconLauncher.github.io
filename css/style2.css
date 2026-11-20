@@ -1263,3 +1263,95 @@ hr {
 #gametitle {
     width: max-content;
 }
+
+/* Launch Mode and Theme Settings CSS */
+
+.settingsdesc {
+    color: var(--text-secondary);
+    margin-top: 0.4vw;
+}
+
+.settingcards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8vw;
+    margin-top: 0.8vw;
+}
+
+.settingcards.disabled {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.settingcard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vw;
+    width: 12.5vw;
+    padding: 0.7vw 0.9vw;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 0.1vw solid var(--ui-main-light);
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.settingcard:hover {
+    border-color: var(--ui-main-lighter);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.settingcard.selected {
+    border-color: var(--ui-select);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.settingcard .carddesc {
+    color: var(--text-secondary);
+    font-size: 0.85vw;
+}
+
+.settingcard.compact {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6vw;
+    width: auto;
+    padding: 0.5vw 1.1vw;
+}
+
+.themedot {
+    width: 1.1vw;
+    height: 1.1vw;
+    border-radius: 50%;
+}
+
+/* Themes - picked in Settings, stored as data-theme on <html> */
+
+html[data-theme="redstone"] body {
+    --ui-select: #b02a2a;
+    --ui-select-secodary: #c84141;
+}
+
+html[data-theme="lapis"] body {
+    --ui-select: #1f5fbf;
+    --ui-select-secodary: #3a78d6;
+}
+
+html[data-theme="amethyst"] body {
+    --ui-select: #7b3fb5;
+    --ui-select-secodary: #9356cc;
+}
+
+html[data-theme="gold"] body {
+    --ui-select: #b8860b;
+    --ui-select-secodary: #d4a020;
+}
+
+html[data-theme="midnight"] body {
+    background-color: #151a27;
+    --ui-main-lighter: #3a4666;
+    --ui-main-light: #1d2538;
+    --ui-main: #121826;
+    --ui-main-dark: #0b0f19;
+    --ui-select: #2a6fb8;
+    --ui-select-secodary: #3d86d4;
+}

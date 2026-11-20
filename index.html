@@ -10,6 +10,13 @@
     <link rel="stylesheet" media="screen and (max-height: 550px)" href="css/screensize.css">
     <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script>
+        // Apply saved theme before first paint
+        try {
+            var root = document.documentElement;
+            if (localStorage.getItem("theme")) {root.dataset.theme = localStorage.getItem("theme")};
+        } catch (e) {}
+    </script>
     <!-- Discord-->
     <meta content="Beacon Launcher" property="og:title">
     <meta content="A minecraft themed launcher for Eaglercraft!" property="og:description">
@@ -256,7 +263,24 @@
 				</div>
                 <p class="bolded settingstitle">LAUNCHER SETTINGS</p>
                 <div class="settingoption"><input id="launcherpresets" class="settingsbox" type="checkbox" onchange="presetlaunchers()"><p>Preset installations</p></div>
-                <div class="settingoption"><input id="launchnewtab" class="settingsbox" type="checkbox" onchange="launchnewtab()"><p>Launch game in new window</p></div>
+                <p class="bolded settingstitle">LAUNCH MODE</p>
+                <p class="settingsdesc">How the game opens when you press Play.</p>
+                <div class="settingcards" id="launchmodecards">
+                    <div class="settingcard" data-launchmode="same" onclick="setlaunchmode('same')"><p class="bolded">Same tab</p><p class="carddesc">Replaces the launcher with the game.</p></div>
+                    <div class="settingcard" data-launchmode="tab" onclick="setlaunchmode('tab')"><p class="bolded">New tab</p><p class="carddesc">Opens the game in a new browser tab.</p></div>
+                    <div class="settingcard" data-launchmode="blank" onclick="setlaunchmode('blank')"><p class="bolded">About:blank</p><p class="carddesc">Opens a blank tab and runs the game inside it.</p></div>
+                    <div class="settingcard" data-launchmode="popup" onclick="setlaunchmode('popup')"><p class="bolded">Popup window</p><p class="carddesc">Opens a 1280x720 window. Popups must be allowed.</p></div>
+                </div>
+                <p class="bolded settingstitle">APPEARANCE</p>
+                <p class="settingsdesc">Theme</p>
+                <div class="settingcards">
+                    <div class="settingcard compact" data-themename="default" onclick="settheme('default')"><span class="themedot" style="background: #008542;"></span><p class="bolded">Default</p></div>
+                    <div class="settingcard compact" data-themename="redstone" onclick="settheme('redstone')"><span class="themedot" style="background: #b02a2a;"></span><p class="bolded">Redstone</p></div>
+                    <div class="settingcard compact" data-themename="lapis" onclick="settheme('lapis')"><span class="themedot" style="background: #1f5fbf;"></span><p class="bolded">Lapis</p></div>
+                    <div class="settingcard compact" data-themename="amethyst" onclick="settheme('amethyst')"><span class="themedot" style="background: #7b3fb5;"></span><p class="bolded">Amethyst</p></div>
+                    <div class="settingcard compact" data-themename="gold" onclick="settheme('gold')"><span class="themedot" style="background: #b8860b;"></span><p class="bolded">Gold</p></div>
+                    <div class="settingcard compact" data-themename="midnight" onclick="settheme('midnight')"><span class="themedot" style="background: #2a6fb8;"></span><p class="bolded">Midnight</p></div>
+                </div>
                 <div class="settingoption"><input id="stealthmode" class="settingsbox" type="checkbox" onchange="stealthmode()"><p>Stealth mode</p></div>
                 <input id="stealthinput" type="text" autocomplete="off" placeholder="https://docs.google.com" value="https://docs.google.com" onkeyup="if (event.key === 'Enter') stealthnamechange()">
                 <p class="bolded settingstitle">LAUNCHER USERNAME</p>

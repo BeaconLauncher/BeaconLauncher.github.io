@@ -49,6 +49,7 @@ if (!localStorage.getItem("launchnewtab")) {
     localStorage.setItem("customlaunchersnumber", 0);
     localStorage.setItem("launcherpresets", true);
     localStorage.setItem("launchnewtab", false);
+    localStorage.setItem("launchmode", "same");
     localStorage.setItem("stealth", false);
 };
 let customlaunchersnumber = localStorage.getItem("customlaunchersnumber").padStart(2, "0");
@@ -67,20 +68,20 @@ async function setstealth() {
 	console.log(result)
 	localStorage.setItem("stealthname", url);
     stealthname = localStorage.getItem("stealthname");
-    launchnewtab()
+    syncsettings()
 }
 
 if (stealthmodebox.checked) {
 	document.getElementById("stealthinput").style.display = "flex";
-	localStorage.setItem("launchnewtab", true);
-	document.getElementById('launchnewtab').checked = true;
-	document.getElementById('launchnewtab').disabled = true;
+	localStorage.setItem("launchmode", "tab");
+	document.getElementById("launchmodecards").classList.add("disabled");
+	syncsettings()
 	setstealth()
 } else {
 	document.querySelector("link[rel*='icon']").href = './assets/images/logo.png';
    	document.title = "Beacon Launcher";
     document.getElementById("stealthinput").style.display = "none";
-	document.getElementById('launchnewtab').disabled = false;
+	document.getElementById("launchmodecards").classList.remove("disabled");
 };
 
 function generateprofile(game) {
@@ -1190,34 +1191,47 @@ function preventMotion(event)
 }
 
 // Basic Settings
-const newtabcheckbox = document.getElementById("launchnewtab");
 const presetscheckbox = document.getElementById("launcherpresets");
-let target = ""
-if (localStorage.getItem("launcherpresets")) {
-    if (localStorage.getItem("launcherpresets") == 'true') {
-        presetscheckbox.checked = true;
-    }
-    else if (localStorage.getItem("launcherpresets") == 'false') {
-        presetscheckbox.checked = false;
-    }
-    if (localStorage.getItem("launchnewtab") == 'true') {
-        newtabcheckbox.checked = true;
-        target = "_blank";
-    }
-    if (localStorage.getItem("launchnewtab") == 'false') {
-        newtabcheckbox.checked = false;
-        target = "_self";
-    }
+const launchmodecards = document.getElementById("launchmodecards");
+// The old "Launch game in new window" checkbox is now the Launch Mode setting
+if (!localStorage.getItem("launchmode") && localStorage.getItem("launchnewtab") == 'true') {localStorage.setItem("launchmode", "tab")};
+if (localStorage.getItem("launcherpresets") == 'true') {
+    presetscheckbox.checked = true;
+}
+else if (localStorage.getItem("launcherpresets") == 'false') {
+    presetscheckbox.checked = false;
+}
+
+// Launch Mode, Theme
+function setlaunchmode(mode) {
+    localStorage.setItem("launchmode", mode);
+    syncsettings();
 };
-function launchnewtab() {
-	if (newtabcheckbox.checked) {
-		localStorage.setItem("launchnewtab", true)
-		target = "_blank"
-	}
-    else {
-    	localStorage.setItem("launchnewtab", false)
-    	target = "_self"
-    };
+
+function settheme(name) {
+    if (name === "default") {localStorage.removeItem("theme")} else {localStorage.setItem("theme", name)};
+    syncsettings();
+};
+
+// Applies the saved settings to the page and marks the selected options
+function syncsettings() {
+    const root = document.documentElement;
+    const mode = localStorage.getItem("launchmode") || "same";
+    const theme = localStorage.getItem("theme") || "default";
+    if (theme === "default") {delete root.dataset.theme} else {root.dataset.theme = theme};
+    document.querySelectorAll("[data-launchmode]").forEach((card) => card.classList.toggle("selected", card.dataset.launchmode === mode));
+    document.querySelectorAll("[data-themename]").forEach((card) => card.classList.toggle("selected", card.dataset.themename === theme));
+};
+syncsettings();
+
+function writepage(win, html) {
+    win.document.open();
+    win.document.write(html);
+    win.document.close();
+};
+
+function cloakpage(href) {
+    return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Beacon Launcher</title><style>html,body,iframe{margin:0;padding:0;border:0;width:100%;height:100%;overflow:hidden;background:#000}</style></head><body><iframe src="' + href + '" allowfullscreen allow="fullscreen; autoplay; clipboard-write; gamepad"></iframe></body></html>';
 };
 
 async function openmc() {
@@ -1227,13 +1241,30 @@ async function openmc() {
 		}).catch(console.error);
 	}
 	localStorage.setItem("notfirstrun", true)
-	const w = window.open(gamelink, target)
-	if (stealthmodebox.checked) {
-		w.addEventListener('load', ()=> {
-			w.document.title = document.title;
-			w.document.querySelector("link[rel*='icon']").href = document.querySelector("link[rel*='icon']").href;
-		});
+	const mode = localStorage.getItem("launchmode") || "same";
+	const popupfeatures = "popup,width=1280,height=720";
+	let w = null;
+	if (mode === "same") {
+		location.href = gamelink;
+		return;
 	};
+	if (mode === "tab") {
+		w = window.open(gamelink, "_blank");
+		if (w && stealthmodebox.checked) {
+			w.addEventListener('load', ()=> {
+				w.document.title = document.title;
+				w.document.querySelector("link[rel*='icon']").href = document.querySelector("link[rel*='icon']").href;
+			});
+		};
+		return;
+	};
+	w = window.open("about:blank", "_blank", mode === "popup" ? popupfeatures : undefined);
+	if (!w) {
+		if (stealthmodebox.checked) {location.href = gamelink; return};
+		w = window.open(gamelink, "_blank");
+		return;
+	};
+	writepage(w, cloakpage(gamelink));
 };
 function presetlaunchers() {
     if (presetscheckbox.checked) {
@@ -1270,14 +1301,15 @@ function presetlaunchers() {
 
 function stealthmode() {
   	if (stealthmodebox && stealthmodebox.checked) {
-  		newtabcheckbox.checked = true;
+  		localStorage.setItem("launchmode", "tab");
+  		document.getElementById("launchmodecards").classList.add("disabled");
+  		syncsettings();
   		document.getElementById("stealthinput").style.display = "flex";
-  		document.getElementById('launchnewtab').disabled = true;
 		setstealth()
     	localStorage.setItem("stealth", true)
   	} else {
   		document.getElementById("stealthinput").style.display = "none";
-  		document.getElementById('launchnewtab').disabled = false;
+  		document.getElementById("launchmodecards").classList.remove("disabled");
    		document.querySelector("link[rel*='icon']").href = './assets/images/logo.png';
    		document.title = "Beacon Launcher";
    		localStorage.setItem("stealth", false)

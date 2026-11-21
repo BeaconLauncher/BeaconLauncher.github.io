@@ -703,12 +703,16 @@ hr {
     cursor: pointer;
 }
 
+.installationBox:hover {
+    background-color: var(--ui-main-light);
+}
+
 .installationBox:checked {
   background-color: var(--ui-select);
 }
 
 .installationBox:checked:hover {
-    background-color: #0f9a54;
+    background-color: var(--ui-checkbox-hover);
 }
 
 .installationOption img {
@@ -1336,6 +1340,21 @@ html[data-theme="redstone"] body {
     --ui-checkbox: #8f221f;
     --ui-checkbox-border: #c84141;
     --ui-checkbox-hover: #7a1c1c;
+}
+
+/* Blood - all red dark theme ported from GX-Launcher */
+
+html[data-theme="blood"] body {
+    background-color: #070707;
+    --ui-main-lighter: #2a1a1a;
+    --ui-main-light: #161010;
+    --ui-main: #0d0d0d;
+    --ui-main-dark: #070707;
+    --ui-select: #cc0000;
+    --ui-select-secodary: #ff2222;
+    --ui-checkbox: #800000;
+    --ui-checkbox-border: #ff4444;
+    --ui-checkbox-hover: #660000;
 }
 
 html[data-theme="lapis"] body {

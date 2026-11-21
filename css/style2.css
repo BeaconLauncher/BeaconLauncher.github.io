@@ -33,6 +33,9 @@ body {
     --text-secondary: #cccccc;
     --ui-select: #008542;
     --ui-select-secodary: #1c985a;
+    --ui-checkbox: #0c6e3d;
+    --ui-checkbox-border: #00AA00;
+    --ui-checkbox-hover: #0c5c34;
     --ui-red: #aa0000;
     --ui-red-secondary: #ae2525;
     --ui-contributors: #1c190b;
@@ -465,7 +468,7 @@ hr {
 }
 
 .modoption.selected {
-    border: 0.15vw solid #00AA00;
+    border: 0.15vw solid var(--ui-checkbox-border);
 }
 
 .modoption img {
@@ -696,7 +699,7 @@ hr {
     width: 3.5vh;
     height: 3.5vh;
     appearance: none;
-    border: 0.3vw solid #0c6e3d;
+    border: 0.3vw solid var(--ui-checkbox);
     cursor: pointer;
 }
 
@@ -760,7 +763,7 @@ hr {
     width: 2.5vh;
     height: 2.5vh;
     appearance: none;
-    border: 0.3vw solid #0c6e3d;
+    border: 0.3vw solid var(--ui-checkbox);
     cursor: pointer;
 }
 
@@ -877,7 +880,7 @@ hr {
     width: 2.5vh;
     height: 2.5vh;
     appearance: flex;
-    border: 0.3vw solid #0c6e3d;
+    border: 0.3vw solid var(--ui-checkbox);
     cursor: pointer;
 }
 
@@ -1137,12 +1140,12 @@ hr {
 }
 
 .settingsbox:checked {
-    background-color: #0c6e3d;
-    border-color: #00AA00;
+    background-color: var(--ui-checkbox);
+    border-color: var(--ui-checkbox-border);
 }
 
 .settingsbox:checked:hover {
-    background-color: #0c5c34;
+    background-color: var(--ui-checkbox-hover);
 }
 
 #usernameinput {
@@ -1330,21 +1333,33 @@ hr {
 html[data-theme="redstone"] body {
     --ui-select: #b02a2a;
     --ui-select-secodary: #c84141;
+    --ui-checkbox: #8f221f;
+    --ui-checkbox-border: #c84141;
+    --ui-checkbox-hover: #7a1c1c;
 }
 
 html[data-theme="lapis"] body {
     --ui-select: #1f5fbf;
     --ui-select-secodary: #3a78d6;
+    --ui-checkbox: #17468c;
+    --ui-checkbox-border: #3a78d6;
+    --ui-checkbox-hover: #123a75;
 }
 
 html[data-theme="amethyst"] body {
     --ui-select: #7b3fb5;
     --ui-select-secodary: #9356cc;
+    --ui-checkbox: #63338f;
+    --ui-checkbox-border: #9356cc;
+    --ui-checkbox-hover: #4b2570;
 }
 
 html[data-theme="gold"] body {
     --ui-select: #b8860b;
     --ui-select-secodary: #d4a020;
+    --ui-checkbox: #946908;
+    --ui-checkbox-border: #d4a020;
+    --ui-checkbox-hover: #7d5a08;
 }
 
 html[data-theme="midnight"] body {
@@ -1355,4 +1370,7 @@ html[data-theme="midnight"] body {
     --ui-main-dark: #0b0f19;
     --ui-select: #2a6fb8;
     --ui-select-secodary: #3d86d4;
+    --ui-checkbox: #1d558c;
+    --ui-checkbox-border: #3d86d4;
+    --ui-checkbox-hover: #174a78;
 }

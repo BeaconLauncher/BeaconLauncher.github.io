@@ -4,7 +4,7 @@
        "version": "26.2-u1-wasm",
        "icon": "./assets/images/icons/chrome.png",
        "link": "./mc/chromium-client",
-       "active": false,
+       "active": true,
        "download": false
     },
     {
@@ -12,7 +12,7 @@
        "version": "26.2",
        "icon": "./assets/images/icons/ranked.png",
        "link": "./mc/ranked-26.2",
-       "active": true,
+       "active": false,
        "download": false
     },
     {

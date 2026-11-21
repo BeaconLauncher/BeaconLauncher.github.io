@@ -1093,6 +1093,7 @@ hr {
     display: none;
     width: 84vw;
     height: 91vh;
+    box-sizing: border-box;
     flex-direction: column;
     align-items: flex-start;
     background-color: var(--ui-main-dark);
@@ -1103,7 +1104,6 @@ hr {
 
 #generalsettings {
     display: block;
-    overflow-y: scroll;
 }
 
 #generalsettings .settingstitle {

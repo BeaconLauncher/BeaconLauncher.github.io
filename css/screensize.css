@@ -310,6 +310,7 @@ hr {
 #settings {
   width: 94.5vw;
   height: 91vh;
+  box-sizing: border-box;
   font-size: 1.4vw;
   padding: 6vh 5vw 7vh;
 }

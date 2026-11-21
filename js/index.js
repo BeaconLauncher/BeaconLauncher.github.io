@@ -1179,12 +1179,13 @@ function resetHeaderSelected() {
     document.getElementById("skinsiframe").src = "about:blank";
 }
 
-// Prevents touchscreen move
+// Prevents touchscreen move (but lets real scroll containers scroll)
 window.addEventListener("scroll", preventMotion, false);
 window.addEventListener("touchmove", preventMotion, false);
 
 function preventMotion(event)
 {
+    if (event.target.closest && event.target.closest("#settings, #mods, #faq, #installations, #patchNotes, #servers, #contributors, #credits")) return;
     window.scrollTo(0, 0);
     event.preventDefault();
     event.stopPropagation();
@@ -1369,4 +1370,3 @@ if (selectedHeader) {
 }
 
 generatefaqs();
-

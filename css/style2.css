@@ -708,7 +708,7 @@ hr {
 }
 
 .installationBox:checked:hover {
-    background-color: #0f9a54;
+    background-color: var(--ui-select);
 }
 
 .installationOption img {

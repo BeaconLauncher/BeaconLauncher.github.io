@@ -4,6 +4,7 @@
     background: transparent;
 }
 
+
 html {
     display: block;
     line-height: 1.5;
@@ -282,6 +283,7 @@ hr {
 /* Body CSS */
 
 #game-bg {
+	filter: var(--img-filter);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -293,6 +295,7 @@ hr {
 }
 
 #game-title {
+	filter: brightness(1) saturate(1) !important;
     width: 40vw;
     height: 6.5vw;
     margin-top: 6vw;
@@ -708,7 +711,7 @@ hr {
 }
 
 .installationBox:checked:hover {
-    background-color: var(--ui-select);
+    background-color: var(--ui-checkbox-hover);
 }
 
 .installationOption img {
@@ -1388,4 +1391,17 @@ html[data-theme="midnight"] body {
     --ui-checkbox: #1d558c;
     --ui-checkbox-border: #3d86d4;
     --ui-checkbox-hover: #174a78;
+}
+
+html[data-theme="hacked"] body {
+    background-color: #0a3502;
+    --ui-main-lighter: #092b03;
+    --ui-main-light: #031909;
+    --ui-main: #070707;
+    --ui-main-dark: #000a02;
+    --ui-select: #010f00;
+    --ui-select-secodary: #031909;
+    --ui-checkbox: #0a3502;
+    --ui-checkbox-border: #092b03;
+    --ui-checkbox-hover: #021900;
 }

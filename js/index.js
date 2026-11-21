@@ -596,7 +596,7 @@ async function getstats() {
 	"https://analytics.dutchducksdevelopment.workers.dev/count"
 	)
 	const responsetext = await response.text();
-	const count = Math.round((Number(responsetext) + 1))
+	const count = Math.round((Number(responsetext) + 1000)) //Im adding the 1k because thats what google analytics detected before I made my own analytics backend
 	document.getElementById("usersnumber").innerHTML = count
 	const loss = Math.round(((count / 1.2) * 30) + (count * 0.0005))
 	document.getElementById("lossnumber").innerHTML = "~ " + loss + "$"
@@ -611,9 +611,9 @@ async function getstats() {
 	console.log(ratings)
 	const sum1 = ratings.reduce((sum, number) => sum + number, 0);
 	const sum2 = (sum1 / counter)
-	const total = Math.round(sum2 * 2) / 2
+	const total = sum2.toFixed(2);
 	console.log(total)
-	document.getElementById("stars").innerHTML = total + "⭐"
+	document.getElementById("stars").innerHTML = total + "/5 ⭐"
 	localStorage.setItem("stars", total)
 	localStorage.setItem("count", count)
 };

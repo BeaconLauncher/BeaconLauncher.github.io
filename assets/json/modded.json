@@ -1,4 +1,83 @@
 [
+	{
+       "title": "Chromium Client WASM",
+       "version": "26.2-u1-wasm",
+       "icon": "./assets/images/icons/chrome.png",
+       "link": "./mc/chromium-client",
+       "active": false,
+       "download": false
+    },
+    {
+       "title": "Eaglercraft Ranked",
+       "version": "26.2",
+       "icon": "./assets/images/icons/ranked.png",
+       "link": "./mc/ranked-26.2",
+       "active": true,
+       "download": false
+    },
+    {
+       "title": "EaglyMC",
+       "version": "1.20-u7",
+       "icon": "./assets/images/icons/eaglymc.png",
+       "link": "./mc/EaglyMC",
+       "active": false,
+       "download": true
+    },
+    {
+       "title": "Eclipse Client",
+       "version": "1.19-1.0.8-wasm",
+       "icon": "./assets/images/icons/norshare.png",
+       "link": "./mc/eclipse/",
+       "active": false,
+       "download": false
+    },
+    {
+       "title": "Larp Client WASM",
+       "version": "1.14.4-u1-wasm",
+       "icon": "./assets/images/icons/larp.png",
+       "link": "./mc/larp-client-1.14.4/",
+       "active": false,
+       "download": true
+    },
+    {
+       "title": "Pixel Client",
+       "version": "1.12.2-v3.0.0",
+       "icon": "./assets/images/icons/pixelclient.png",
+       "link": "./mc/pixelclient-1.12.2/",
+       "active": false,
+       "download": true
+    },
+    {
+       "title": "Pixel Client WASM",
+       "version": "1.12.2-v3.0.0-wasm",
+       "icon": "./assets/images/icons/pixelclient-wasm.png",
+       "link": "./mc/pixelclient-1.12.2-wasm/",
+       "active": false,
+       "download": true
+    },
+    {
+       "title": "Tuff Client",
+       "version": "1.12.2-v1.1UT15",
+       "icon": "./assets/images/mc-icons/tuff.png",
+       "link": "./mc/tuffclient/",
+       "active": true,
+       "download": true
+    },
+    {
+       "title": "Tuff Client WASM",
+       "version": "1.12.2-v1.1UT15-WASM",
+       "icon": "./assets/images/mc-icons/tuff-wasm.png",
+       "link": "./mc/tuffclient-wasm/",
+       "active": true,
+       "download": true
+    },    
+    {
+       "title": "EaglercraftL 1.9.4",
+       "version": "1.9.4",
+       "icon": "./assets/images/mc-icons/chorus-flower.png",
+       "link": "./mc/1.9.4/",
+       "active": false
+    },
     {
        "title": "Eaglerforge",
        "version": "1.8.8-v1.3.2",
@@ -41,41 +120,10 @@
     },
     {
        "title": "Eaglercraft Ranked",
-       "version": "26.2",
-       "icon": "./assets/images/icons/ranked.png",
-       "link": "./mc/ranked-26.2",
-       "active": true,
-       "download": false
-    },
-    {
-       "title": "Eaglercraft Ranked",
        "version": "1.8.8",
        "icon": "./assets/images/icons/ranked.png",
        "link": "./mc/ranked-1.8.8",
        "active": true,
-       "download": false
-    },
-    {
-       "title": "EaglyMC",
-       "version": "1.20-u7",
-       "icon": "./assets/images/icons/eaglymc.png",
-       "link": "./mc/EaglyMC",
-       "active": false,
-       "download": true
-    },
-    {
-       "title": "EaglercraftL 1.9.4",
-       "version": "1.9.4",
-       "icon": "./assets/images/mc-icons/chorus-flower.png",
-       "link": "./mc/1.9.4/",
-       "active": false
-    },
-    {
-       "title": "Eclipse Client",
-       "version": "1.19-1.0.8-wasm",
-       "icon": "./assets/images/icons/norshare.png",
-       "link": "./mc/eclipse/",
-       "active": false,
        "download": false
     },
     {
@@ -127,38 +175,6 @@
        "download": true
     },
     {
-       "title": "Pixel Client",
-       "version": "1.12.2-v3.0.0",
-       "icon": "./assets/images/icons/pixelclient.png",
-       "link": "./mc/pixelclient-1.12.2/",
-       "active": true,
-       "download": true
-    },
-    {
-       "title": "Pixel Client WASM",
-       "version": "1.12.2-v3.0.0-wasm",
-       "icon": "./assets/images/icons/pixelclient-wasm.png",
-       "link": "./mc/pixelclient-1.12.2-wasm/",
-       "active": true,
-       "download": true
-    },
-    {
-       "title": "Tuff Client",
-       "version": "1.12.2-v1.1UT15",
-       "icon": "./assets/images/mc-icons/tuff.png",
-       "link": "./mc/tuffclient/",
-       "active": false,
-       "download": true
-    },
-    {
-       "title": "Tuff Client WASM",
-       "version": "1.12.2-v1.1UT15-WASM",
-       "icon": "./assets/images/mc-icons/tuff-wasm.png",
-       "link": "./mc/tuffclient-wasm/",
-       "active": false,
-       "download": true
-    },
-    {
        "title": "DragonXLite",
        "version": "1.8.8",
        "icon": "./assets/images/mc-icons/dragon-head.png",
@@ -171,22 +187,6 @@
        "version": "1.8.8",
        "icon": "./assets/images/icons/uwu.svg",
        "link": "./mc/uwuclient/",
-       "active": false,
-       "download": false
-    },
-    {
-       "title": "Fuchsia hacked client",
-       "version": "1.5.2",
-       "icon": "./assets/images/mc-icons/clay.png",
-       "link": "./mc/fuchsia/",
-       "active": false,
-       "download": false
-    },
-    {
-       "title": "Ayuncraft",
-       "version": "1.5.2",
-       "icon": "./assets/images/icons/ayunami2000.gif",
-       "link": "./mc/ayuncraft-1.5.2/",
        "active": false,
        "download": false
     },
@@ -301,5 +301,21 @@
        "link": "./mc/modpacks/vanilla-wasm",
        "active": false,
        "download": true
+    },
+    {
+       "title": "Fuchsia hacked client",
+       "version": "1.5.2",
+       "icon": "./assets/images/mc-icons/clay.png",
+       "link": "./mc/fuchsia/",
+       "active": false,
+       "download": false
+    },
+    {
+       "title": "Ayuncraft",
+       "version": "1.5.2",
+       "icon": "./assets/images/icons/ayunami2000.gif",
+       "link": "./mc/ayuncraft-1.5.2/",
+       "active": false,
+       "download": false
     }
  ]

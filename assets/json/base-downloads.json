@@ -14,6 +14,20 @@
        "link": "./mc/26.2-wasm/"
     },
     {
+       "title": "Eaglercraft 1.21.11",
+       "version": "1.21.11-u1",
+       "type": "js",
+       "icon": "./assets/images/mc-icons/nautilus-armor.png",
+       "link": "./mc/1.21.11/"
+    },
+    {
+       "title": "Eaglercraft 1.21.11 WASM",
+       "version": "1.21.11-u1-wasm",
+       "type": "wasm",
+       "icon": "./assets/images/mc-icons/nautilus-armor-wasm.png",
+       "link": "./mc/1.21.11-wasm/"
+    },
+    {
        "title": "Eaglercraft 1.20.6 WASM",
        "version": "1.20.6-pre-wasm",
        "type": "wasm",

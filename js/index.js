@@ -596,7 +596,7 @@ async function getstats() {
 	"https://analytics.dutchducksdevelopment.workers.dev/count"
 	)
 	const responsetext = await response.text();
-	const count = Math.round((Number(responsetext) + 1200) - ((Number(responsetext) + 1000) / 9))
+	const count = Math.round((Number(responsetext) + 1200))
 	document.getElementById("usersnumber").innerHTML = count
 	const loss = Math.round(((count / 1.2) * 30) + (count * 0.0005))
 	document.getElementById("lossnumber").innerHTML = "~ " + loss + "$"

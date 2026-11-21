@@ -1399,9 +1399,22 @@ html[data-theme="hacked"] body {
     --ui-main-light: #031909;
     --ui-main: #070707;
     --ui-main-dark: #000a02;
-    --ui-select: #010f00;
-    --ui-select-secodary: #031909;
+    --ui-select: #022101;
+    --ui-select-secodary: #010f00;
     --ui-checkbox: #0a3502;
     --ui-checkbox-border: #092b03;
     --ui-checkbox-hover: #021900;
+}
+
+html[data-theme="nebula"] body {
+	background-color: #130117;
+	--ui-main-lighter: #20263a;
+	--ui-main-light: #101520;
+	--ui-main: #130117;
+	--ui-main-dark: #0c000c;
+	--ui-select: #432263;
+	--ui-select-secodary: #502e70;
+	--ui-checkbox: #351b4b;
+	--ui-checkbox-border: #502e70;
+	--ui-checkbox-hover: #28143b;
 }

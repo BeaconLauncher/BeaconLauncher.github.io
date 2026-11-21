@@ -20,6 +20,30 @@ function shuffle(array) {
     }
 }
 
+function shuffle2(array) {
+  const result = [...array];
+
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
+}
+
+
+const MAINURL = "https://beaconlauncher.online" //change this (or delete it) if you're forking, this is for checking if the site is on tor
+var istor = false
+
+if (document.URL != MAINURL) {
+	istor = true
+}
+
+if (istor) {
+	document.getElementById("header13").style.display = "none"
+}
+let musicplaying = false
+
 let gamelink = "./mc/26.3-wasm"
 
 
@@ -39,12 +63,21 @@ else {
 };
 const stealth = localStorage.getItem("stealth")
 const stealthmodebox = document.getElementById("stealthmode");
-console.log(stealth)
-console.log(stealthmodebox.checked)
+document.getElementById("musicbtn").checked = localStorage.getItem("music")
+if (document.getElementById("musicbtn").checked === true) {
+	document.addEventListener("click", () => {
+		if (!musicplaying) {
+			if (document.getElementById("musicbtn").checked) {
+				startmusic()
+			}
+		}
+	})
+}
 let modslauncher
 if (localStorage.getItem("modslauncher")) {
     modslauncher = JSON.parse(localStorage.getItem("modslauncher"))};
 if (!localStorage.getItem("launchnewtab")) {
+	localStorage.setItem("music", false);
     localStorage.setItem("customlaunchers", "[]");
     localStorage.setItem("customlaunchersnumber", 0);
     localStorage.setItem("launcherpresets", true);
@@ -64,8 +97,6 @@ async function setstealth() {
 	const result = await raw.json();
 	document.querySelector("link[rel*='icon']").href = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(url) + "&sz=128";
 	document.title = result.title
-	console.log(raw)
-	console.log(result)
 	localStorage.setItem("stealthname", url);
     stealthname = localStorage.getItem("stealthname");
     syncsettings()
@@ -212,7 +243,6 @@ function generatemods() {
                     modoption.classList.remove("selected"); 
                     modslauncher = modslauncher.filter(obj => obj !== mod.link); 
                     localStorage.setItem("modslauncher", JSON.stringify(modslauncher.filter(obj => obj !== mod.link))); 
-                    console.log("Off")
                 }
                 else {
                     mod.active = true; 
@@ -220,7 +250,7 @@ function generatemods() {
                     modoption.classList.add("selected"); 
                     modslauncher.push(mod.link); 
                     localStorage.setItem("modslauncher", JSON.stringify(modslauncher)); 
-                    console.log("On")} 
+				} 
             });
             if (localStorage.getItem(mod.title) === 'true') {
                 modoption.classList.add("selected");
@@ -496,8 +526,8 @@ function generatelauncher(game, path) {
     gameinput.type = "checkbox";
     gameinput.addEventListener("change", () => {
         if (game.title === gamepath.title) {return};
-        if (gameinput.checked) {game.active = true; localStorage.setItem(game.title, game.active); console.log("On")} 
-        else {game.active = false; localStorage.setItem(game.title, game.active); console.log("Off")} 
+        if (gameinput.checked) {game.active = true; localStorage.setItem(game.title, game.active);} 
+        else {game.active = false; localStorage.setItem(game.title, game.active);} 
     });
     if (!localStorage.getItem(game.title)) {localStorage.setItem(game.title, game.active)};
     if (localStorage.getItem(game.title) === 'true') {gameinput.checked = "checked"};
@@ -608,11 +638,9 @@ async function getstats() {
 		counter = counter + 1
 		ratings.push(Number(row["How many stars do you rate BeaconLauncher?"]));
 	});
-	console.log(ratings)
 	const sum1 = ratings.reduce((sum, number) => sum + number, 0);
 	const sum2 = (sum1 / counter)
 	const total = sum2.toFixed(2);
-	console.log(total)
 	document.getElementById("stars").innerHTML = total + "/5 ⭐"
 	localStorage.setItem("stars", total)
 	localStorage.setItem("count", count)
@@ -872,7 +900,6 @@ function sortnote(type) {
 let jsdownload = true
 let wasmdownload = true
 function sortdownload(type) {
-	console.log(type)
     if (type === "wasm") {
         if (wasmdownload == true) { document.querySelectorAll('[data-download-type="wasm"]').forEach(element => {element.style.display = 'none';}); wasmdownload = false;}
         else if (wasmdownload == false) { document.querySelectorAll('[data-download-type="wasm"]').forEach(element => {element.style.display = 'flex';}); wasmdownload = true;}
@@ -933,6 +960,10 @@ function webedition(){
     resetTabSelected();
     generateprofile(1);
     generatelaunchers(launcher);
+    if (istor) {
+		document.getElementById('header13').style.display = 'none';
+		document.getElementById('header5').style.display = 'none';
+	}
     document.getElementById('game-bg').style.backgroundImage = 'url(./assets/images/web-edition.png)';
     document.getElementById('game-title').src = './assets/images/web-title.png';
     document.getElementById('gameedition').innerHTML = 'EAGLERCRAFT WEB EDITION';
@@ -951,6 +982,10 @@ function moddededition(){
     resetTabSelected();
     generateprofile(2);
     generatelaunchers(launcher);
+    if (istor) {
+		document.getElementById('header13').style.display = 'none';
+		document.getElementById('header5').style.display = 'none';
+	}
     document.getElementById('game-bg').style.backgroundImage = 'url(./assets/images/modded-edition.jpg)';
     document.getElementById('game-title').src = './assets/images/modded-title.png';
     document.getElementById('gameedition').innerHTML = 'EAGLERCRAFT MODDED';
@@ -968,6 +1003,10 @@ function eaglercontrols(){
     resetTabSelected();
     generateprofile(3);
     generatelaunchers(launcher);
+    if (istor) {
+		document.getElementById('header13').style.display = 'none';
+		document.getElementById('header5').style.display = 'none';
+	}
     document.getElementById('game-bg').style.backgroundImage = 'url(./assets/images/controls-edition.jpg)';
     document.getElementById('game-title').src = './assets/images/controls-title.png';
     document.getElementById('gameedition').innerHTML = 'EAGLERCRAFT MOBILE/CONTROLLER';
@@ -1236,10 +1275,12 @@ function cloakpage(href) {
 };
 
 async function openmc() {
-	if (!localStorage.getItem("notfirstrun")) {
-		await fetch("https://analytics.dutchducksdevelopment.workers.dev/increment", {
-			method: "POST",
-		}).catch(console.error);
+	if (!istor) {		
+		if (!localStorage.getItem("notfirstrun")) {
+			await fetch("https://analytics.dutchducksdevelopment.workers.dev/increment", {
+				method: "POST",
+			}).catch(console.error);
+		}
 	}
 	localStorage.setItem("notfirstrun", true)
 	const mode = localStorage.getItem("launchmode") || "same";
@@ -1322,6 +1363,50 @@ function stealthnamechange() {
     stealthname = localStorage.getItem("stealthname");
     stealthmode();
 };
+
+async function stopmusic() {
+	document.querySelectorAll("audio").forEach((audio) => {
+		audio.pause();
+		audio.remove();
+	});
+}
+
+function togglemusic() {
+	const musicbox = document.getElementById("musicbtn")
+	if (musicbox.checked === true) {
+		playingmusic = false
+		localStorage.setItem("music", true)
+		startmusic();
+	} else {
+		playingmusic = true
+		localStorage.setItem("music", false)
+		stopmusic()
+	}
+}
+
+
+async function startmusic() {
+	musicplaying = true
+    let pl = shuffle2(["aria-math.mp3", "minecraft.mp3", "moog-city-2.mp3", "subwoofer-lullaby.mp3", "sweden.mp3", "wet-hands.mp3"])
+	const player = document.createElement("audio");
+	document.body.append(player)
+	let counter = 0
+	async function playNext() {
+		player.volume = 0.01
+		player.src = "./assets/audio/mc-audio/" + pl[counter]
+		await player.play()
+		player.volume = 0.01
+		counter = counter + 1
+		if (counter > 6) {
+			counter = 0
+		}
+	}
+    player.addEventListener("ended", playNext);
+    player.src = "./assets/audio/mc-audio/" + pl[counter]
+    await player.play()
+    player.volume = 0.01
+	counter = counter + 1
+}
 
 // Username Generator
 let username = document.getElementById('username');

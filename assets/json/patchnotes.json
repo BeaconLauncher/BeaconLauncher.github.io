@@ -1,6 +1,19 @@
 [  	
 	{
-        "title": "Hotfix: New version and more settings",
+        "title": "Hotfix: Ambient music and more themes",
+        "version": "v1.6.13",
+        "description": "Added ambient Minecraft music in the launcher and added 2 new themes",
+        "date": "November 21th, 2026",
+        "icon": "/mc-icons/jukebox.png",
+        "type": "hotfix",
+        "notes": [
+            "Added ambient Minecraft music in the launcher",
+            "Added a black-green theme called Hacked and a dark purple theme called nebula",
+            "Removed herobrine"
+        ]
+    },
+	{
+        "title": "Hotfix: New versions and more settings",
         "version": "v1.6.12",
         "description": "Added 3 Eaglercraft versions and more settings",
         "date": "November 20th, 2026",

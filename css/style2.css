@@ -703,12 +703,16 @@ hr {
     cursor: pointer;
 }
 
+.installationBox:hover {
+    background-color: var(--ui-main-light);
+}
+
 .installationBox:checked {
   background-color: var(--ui-select);
 }
 
 .installationBox:checked:hover {
-    background-color: #0f9a54;
+    background-color: var(--ui-checkbox-hover);
 }
 
 .installationOption img {

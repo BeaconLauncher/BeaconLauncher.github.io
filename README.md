@@ -14,8 +14,9 @@
 <hr>
 
  ## Versions
- __v1.6.1__ - Added a stats tab
- __v1.6.0__ - Made a proper offline app
+ __v1.6.2__ - Added themes, more open game options and ambient music <br>
+ __v1.6.1__ - Added a stats tab <br>
+ __v1.6.0__ - Made a proper offline app <br>
  __v1.5.5__ - Rebranded the launcher to Beacon Launcher <br>
  __v1.5.4__ - Added downloads tab where you can download offline .html files of some eaglercraft versions <br>
  __v1.5.3__ - Moved the entire repo to EaglerLauncher.github.io, Added a server screen and made the skin editor into its own tab<br>
@@ -46,6 +47,8 @@
 
 
 - [x] Add the servers screen
+- [x] Add ambient music
+- [x] Add themes
 - [x] Add Credits screen
 - [x] Add Settings screen
 - [x] Rewrite some of the css and js
@@ -63,17 +66,20 @@
 </details>
 
 ## Credits
-irv77:
+### irv77:
 - made the gui for Ampler Launcher, which Beacon Launcher is a fork of
 - made the eaglercraft itself work in Ampler Launcher
 
-Dutch Ducks Development:
+### Dutch Ducks Development:
 - forked Ampler Launcher into Beacon Launcher
 - added an offline app
 - added many new clients and modpacks into the launcher
 - added servers screen, downloads screen, and stats screen
 
-TheCreationKing:
+### StarlightGG:
+- Ported settings and themes from gx-launcher
+
+### TheCreationKing:
 - made the skin editor
 
 

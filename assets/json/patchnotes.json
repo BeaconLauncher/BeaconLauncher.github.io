@@ -1,7 +1,7 @@
 [  	
 	{
-        "title": "Hotfix: Ambient music and more themes",
-        "version": "v1.6.13",
+        "title": "Site update: Ambient music and more settings",
+        "version": "v1.6.2",
         "description": "Added ambient Minecraft music in the launcher and added 2 new themes",
         "date": "November 21th, 2026",
         "icon": "/mc-icons/jukebox.png",
@@ -9,19 +9,8 @@
         "notes": [
             "Added ambient Minecraft music in the launcher",
             "Added a black-green theme called Hacked and a dark purple theme called nebula",
-            "Removed herobrine"
-        ]
-    },
-	{
-        "title": "Hotfix: New versions and more settings",
-        "version": "v1.6.12",
-        "description": "Added 3 Eaglercraft versions and more settings",
-        "date": "November 20th, 2026",
-        "icon": "/mc-icons/nautilus-armor.png",
-        "type": "hotfix",
-        "notes": [
             "Added Eaglercraft 1.16.5, 1.21.11 and Chromium Client",
-            "Ported the additional settings from StarlightGG's Ampler Launcher fork",
+            "Ported the additional settings and themes from StarlightGG's Ampler Launcher fork",
             "Removed herobrine"
         ]
     },

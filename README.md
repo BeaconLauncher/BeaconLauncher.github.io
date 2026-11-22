@@ -82,6 +82,8 @@
 ### TheCreationKing:
 - made the skin editor
 
-
-
 <hr>
+
+## Domains
+- [beaconlauncher.online](https://beaconlauncher.online) (1 year contract, after 1 year the domain will change) <br>
+- [tor domain](http://zvekp4t3dt2jzbibjr2lykkkbhixg3mr5trdae4mtxoo3dnci3ejfxad.onion/) (not 100% up) <br>

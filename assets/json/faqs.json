@@ -1,7 +1,7 @@
 [
     {
        "question": "Will there be a offline download?",
-       "answer": "There is! look in the releases tab"
+       "answer": "There is! look in <a href='https://github.com/beaconLauncher/BeaconLauncher.github.io/releases/latest'>the releases tab</a>"
     },
     {
        "question": "How often are the launcher options updated?",
@@ -17,6 +17,10 @@
     },
     {
        "question": "How do I add my own mod to the modketplace?",
-       "answer": "You can suggest your mod in the discord server of irv77 and it might be added."
-    }
+       "answer": "You can suggest your mod in my discord server and it might be added."
+    },
+    {
+		"question": "Are you going to add every new Eaglercraft gamedrop and version when they come out?",
+		"answer": "I will try my best, but I'm not always as active in the Eaglercraft community."
+	}
 ]

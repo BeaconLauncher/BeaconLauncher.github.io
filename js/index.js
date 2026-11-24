@@ -32,7 +32,7 @@ function shuffle2(array) {
 }
 
 
-const MAINURL = "https://beaconlauncher.online" //change this (or delete it) if you're forking, this is for checking if the site is on tor
+const MAINURL = "https://beaconlauncher.online/" //change this (or delete it) if you're forking, this is for checking if the site is on tor
 var istor = false
 
 if (document.URL != MAINURL) {

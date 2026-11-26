@@ -642,7 +642,7 @@ async function getstats() {
 	const sum2 = (sum1 / counter)
 	const total = sum2.toFixed(2);
 	document.getElementById("stars").innerHTML = total + "/5 ⭐"
-	localStorage.setItem("stars", total)
+	localStorage.setItem("stars", total + "/5")
 	localStorage.setItem("count", count)
 };
 

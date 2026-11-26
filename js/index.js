@@ -67,6 +67,21 @@ function applyLauncherState(path) {
     }
 }
 
+let musicplaying = false
+
+function shuffle2(array) {
+  const result = [...array];
+
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
+}
+
+
+
 // Last Played Game Option
 let selectedGame1 = localStorage.getItem("basegame");
 let selectedGame2 = localStorage.getItem("moddedgame");
@@ -80,6 +95,16 @@ if (stealthname != "") {
 else {
 	document.getElementById("stealthinput").value = "https://docs.google.com"
 };
+document.getElementById("musicbtn").checked = localStorage.getItem("music")
+if (document.getElementById("musicbtn").checked === true) {
+	document.addEventListener("click", () => {
+		if (!musicplaying) {
+			if (document.getElementById("musicbtn").checked) {
+				startmusic()
+			}
+		}
+	})
+}
 const stealth = localStorage.getItem("stealth")
 const stealthmodebox = document.getElementById("stealthmode");
 console.log(stealth)
@@ -88,6 +113,7 @@ let modslauncher
 if (localStorage.getItem("modslauncher")) {
     modslauncher = JSON.parse(localStorage.getItem("modslauncher"))};
 if (!localStorage.getItem("launchnewtab")) {
+	localStorage.setItem("music", false);
     localStorage.setItem("customlaunchers", "[]");
     localStorage.setItem("customlaunchersnumber", 0);
     localStorage.setItem("launcherpresets", false);
@@ -719,7 +745,7 @@ async function getstats() {
 	"https://analytics.dutchducksdevelopment.workers.dev/count"
 	)
 	const responsetext = await response.text();
-	const count = Math.round((Number(responsetext) + 1200) - ((Number(responsetext) + 1000) / 9))
+	const count = Math.round((Number(responsetext) + 1000)) //Im adding the 1k because thats what google analytics detected before I made my own analytics backend
 	document.getElementById("usersnumber").innerHTML = count
 	const loss = Math.round(((count / 1.2) * 30) + (count * 0.0005))
 	document.getElementById("lossnumber").innerHTML = "~ " + loss + "$"
@@ -734,9 +760,9 @@ async function getstats() {
 	console.log(ratings)
 	const sum1 = ratings.reduce((sum, number) => sum + number, 0);
 	const sum2 = (sum1 / counter)
-	const total = Math.round(sum2 * 2) / 2
-	console.log(total)
-	document.getElementById("stars").innerHTML = total + "⭐"
+	const total = sum2.toFixed(2);
+	document.getElementById("stars").innerHTML = total + "/5 ⭐"
+	localStorage.setItem("stars", total + "/5")
 	localStorage.setItem("stars", total)
 	localStorage.setItem("count", count)
 };
@@ -1124,6 +1150,7 @@ function serversmenu(){
     document.getElementById('header9').style.display = 'none';
     document.getElementById('header10').style.display = 'none';
     document.getElementById('header12').style.display = 'none';
+    document.getElementById('header13').style.display = 'none';
     document.getElementById('gtabs7').classList.add('selected');
     serversheader();
 }
@@ -1141,6 +1168,7 @@ function creditsmenu(){
     document.getElementById('header10').style.display = 'none';
     document.getElementById('header12').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
+    document.getElementById('header13').style.display = 'none';
     document.getElementById('gtabs5').classList.add('selected');
     contributorsheader();
 }
@@ -1157,6 +1185,7 @@ function settingsmenu(){
     document.getElementById('header7').style.display = 'none';
     document.getElementById('header12').style.display = 'none';
     document.getElementById('header8').style.display = 'none';
+    document.getElementById('header13').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
     document.getElementById('gtabs6').classList.add('selected');
     generalsettingsheader();
@@ -1310,6 +1339,7 @@ window.addEventListener("touchmove", preventMotion, false);
 
 function preventMotion(event)
 {
+	if (event.target.closest && event.target.closest("#settings, #mods, #faq, #installations, #patchNotes, #servers, #contributors, #credits")) return;
     window.scrollTo(0, 0);
     event.preventDefault();
     event.stopPropagation();
@@ -1317,6 +1347,26 @@ function preventMotion(event)
 
 // Basic Settings
 const newtabcheckbox = document.getElementById("launchnewtab");
+function settheme(name) {
+    if (name === "default") {localStorage.removeItem("theme")} else {localStorage.setItem("theme", name)};
+    syncsettings();
+};
+
+// Applies the saved settings to the page and marks the selected options
+function syncsettings() {
+    const root = document.documentElement;
+    const theme = localStorage.getItem("theme") || "default";
+    if (theme === "default") {delete root.dataset.theme} else {root.dataset.theme = theme};
+    document.querySelectorAll("[data-themename]").forEach((card) => card.classList.toggle("selected", card.dataset.themename === theme));
+};
+syncsettings();
+
+function writepage(win, html) {
+    win.document.open();
+    win.document.write(html);
+    win.document.close();
+};
+
 const presetscheckbox = document.getElementById("launcherpresets");
 let target = ""
 if (localStorage.getItem("launcherpresets")) {
@@ -1423,6 +1473,52 @@ function stealthnamechange() {
     stealthname = localStorage.getItem("stealthname");
     stealthmode();
 };
+
+async function stopmusic() {
+	document.querySelectorAll("audio").forEach((audio) => {
+		audio.pause();
+		audio.remove();
+	});
+}
+
+function togglemusic() {
+	const musicbox = document.getElementById("musicbtn")
+	if (musicbox.checked === true) {
+		playingmusic = false
+		localStorage.setItem("music", true)
+		startmusic();
+	} else {
+		playingmusic = true
+		localStorage.setItem("music", false)
+		stopmusic()
+	}
+}
+
+
+async function startmusic() {
+	musicplaying = true
+    let pl = shuffle2(["aria-math.mp3", "minecraft.mp3", "moog-city-2.mp3", "subwoofer-lullaby.mp3", "sweden.mp3", "wet-hands.mp3"])
+	const player = document.createElement("audio");
+	document.body.append(player)
+	let counter = 0
+	async function playNext() {
+		player.volume = 0.01
+		player.src = "./assets/audio/mc-audio/" + pl[counter]
+		await player.play()
+		player.volume = 0.01
+		counter = counter + 1
+		if (counter > 6) {
+			counter = 0
+		}
+	}
+    player.addEventListener("ended", playNext);
+    player.src = "./assets/audio/mc-audio/" + pl[counter]
+    await player.play()
+    player.volume = 0.01
+	counter = counter + 1
+}
+
+
 
 // Username Generator
 let username = document.getElementById('username');

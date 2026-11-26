@@ -33,6 +33,9 @@ body {
     --text-secondary: #cccccc;
     --ui-select: #008542;
     --ui-select-secodary: #1c985a;
+    --ui-checkbox: #0c6e3d;
+    --ui-checkbox-border: #00AA00;
+    --ui-checkbox-hover: #0c5c34;
     --ui-red: #aa0000;
     --ui-red-secondary: #ae2525;
     --ui-contributors: #1c190b;
@@ -715,12 +718,12 @@ hr {
     width: 3.5vh;
     height: 3.5vh;
     appearance: none;
-    border: 0.3vw solid #0c6e3d;
+    border: 0.3vw solid var(--ui-checkbox);
     cursor: pointer;
 }
 
 .installationBox:checked {
-  background-color: var(--ui-select);
+    background-color: var(--ui-checkbox-hover);
 }
 
 .installationBox:checked:hover {
@@ -779,7 +782,7 @@ hr {
     width: 2.5vh;
     height: 2.5vh;
     appearance: none;
-    border: 0.3vw solid #0c6e3d;
+    border: 0.3vw solid var(--ui-checkbox);
     cursor: pointer;
 }
 
@@ -896,7 +899,7 @@ hr {
     width: 2.5vh;
     height: 2.5vh;
     appearance: flex;
-    border: 0.3vw solid #0c6e3d;
+    border: 0.3vw solid var(--ui-checkbox);
     cursor: pointer;
 }
 
@@ -1115,6 +1118,7 @@ hr {
     overflow-y: scroll;
     font-size: 1vw;
     padding: 5vh 3vw 7vh;
+    box-sizing: border-box;
 }
 
 #generalsettings {
@@ -1135,7 +1139,7 @@ hr {
 
 #settingsbuttons {
 	align-items: center;
-	padding: 1vw;
+	padding: 0.5vw;
 }
 
 .settingoption p {
@@ -1155,12 +1159,12 @@ hr {
 }
 
 .settingsbox:checked {
-    background-color: #0c6e3d;
-    border-color: #00AA00;
+    background-color: var(--ui-checkbox);
+    border-color: var(--ui-checkbox-border);
 }
 
 .settingsbox:checked:hover {
-    background-color: #0c5c34;
+    background-color: var(--ui-checkbox-hover);
 }
 
 #usernameinput {
@@ -1282,3 +1286,153 @@ hr {
 #gametitle {
     width: max-content;
 }
+
+/* Launch Mode and Theme Settings CSS */
+
+.settingsdesc {
+    color: var(--text-secondary);
+    margin-top: 0.4vw;
+}
+
+.settingcards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8vw;
+    margin-top: 0.8vw;
+}
+
+.settingcards.disabled {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.settingcard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vw;
+    width: 12.5vw;
+    padding: 0.7vw 0.9vw;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 0.1vw solid var(--ui-main-light);
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.settingcard:hover {
+    border-color: var(--ui-main-lighter);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.settingcard.selected {
+    border-color: var(--ui-select);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.settingcard .carddesc {
+    color: var(--text-secondary);
+    font-size: 0.85vw;
+}
+
+.settingcard.compact {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6vw;
+    width: auto;
+    padding: 0.5vw 1.1vw;
+}
+
+.themedot {
+    width: 1.1vw;
+    height: 1.1vw;
+    border-radius: 50%;
+}
+
+/* Themes - picked in Settings, stored as data-theme on <html> */
+
+html[data-theme="redstone"] body {
+    --ui-select: #b02a2a;
+    --ui-select-secodary: #c84141;
+    --ui-checkbox: #8f221f;
+    --ui-checkbox-border: #c84141;
+    --ui-checkbox-hover: #7a1c1c;
+}
+
+/* Blood - all red dark theme ported from GX-Launcher */
+
+html[data-theme="blood"] body {
+    background-color: #070707;
+    --ui-main-lighter: #2a1a1a;
+    --ui-main-light: #161010;
+    --ui-main: #0d0d0d;
+    --ui-main-dark: #070707;
+    --ui-select: #cc0000;
+    --ui-select-secodary: #ff2222;
+    --ui-checkbox: #800000;
+    --ui-checkbox-border: #ff4444;
+    --ui-checkbox-hover: #660000;
+}
+
+html[data-theme="lapis"] body {
+    --ui-select: #1f5fbf;
+    --ui-select-secodary: #3a78d6;
+    --ui-checkbox: #17468c;
+    --ui-checkbox-border: #3a78d6;
+    --ui-checkbox-hover: #123a75;
+}
+
+html[data-theme="amethyst"] body {
+    --ui-select: #7b3fb5;
+    --ui-select-secodary: #9356cc;
+    --ui-checkbox: #63338f;
+    --ui-checkbox-border: #9356cc;
+    --ui-checkbox-hover: #4b2570;
+}
+
+html[data-theme="gold"] body {
+    --ui-select: #b8860b;
+    --ui-select-secodary: #d4a020;
+    --ui-checkbox: #946908;
+    --ui-checkbox-border: #d4a020;
+    --ui-checkbox-hover: #7d5a08;
+}
+
+html[data-theme="midnight"] body {
+    background-color: #151a27;
+    --ui-main-lighter: #3a4666;
+    --ui-main-light: #1d2538;
+    --ui-main: #121826;
+    --ui-main-dark: #0b0f19;
+    --ui-select: #2a6fb8;
+    --ui-select-secodary: #3d86d4;
+    --ui-checkbox: #1d558c;
+    --ui-checkbox-border: #3d86d4;
+    --ui-checkbox-hover: #174a78;
+}
+
+html[data-theme="hacked"] body {
+    background-color: #0a3502;
+    --ui-main-lighter: #092b03;
+    --ui-main-light: #031909;
+    --ui-main: #070707;
+    --ui-main-dark: #000a02;
+    --ui-select: #032d05;
+    --ui-select-secodary: #010f00;
+    --ui-checkbox: #0a3502;
+    --ui-checkbox-border: #092b03;
+    --ui-checkbox-hover: #021900;
+}
+
+html[data-theme="nebula"] body {
+	background-color: #130117;
+	--ui-main-lighter: #20263a;
+	--ui-main-light: #101520;
+	--ui-main: #130117;
+	--ui-main-dark: #0c000c;
+	--ui-select: #432263;
+	--ui-select-secodary: #502e70;
+	--ui-checkbox: #351b4b;
+	--ui-checkbox-border: #502e70;
+	--ui-checkbox-hover: #28143b;
+}
+
+

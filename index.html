@@ -10,6 +10,13 @@
     <link rel="stylesheet" media="screen and (max-height: 550px)" href="css/screensize.css">
     <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script>
+        // Apply saved theme before first paint
+        try {
+            var root = document.documentElement;
+            if (localStorage.getItem("theme")) {root.dataset.theme = localStorage.getItem("theme")};
+        } catch (e) {}
+    </script>
     <!-- Discord-->
     <meta content="Beacon Launcher" property="og:title">
     <meta content="A minecraft themed launcher for Eaglercraft!" property="og:description">
@@ -91,7 +98,7 @@
         <div id="gtabs6" class="sidebarOptions sidebarBottom" onclick="settingsmenu()">
             <img src="./assets/images/sidebar/m-settings.png"><div class="gTabsText"><p> Settings</p></div>
         </div>
-        <div class="launcherVersion"><p>v1.6.11</p></div>
+        <div class="launcherVersion"><p>v1.6.2</p></div>
     </div>
     <div class="mainPage">
         <div class="gameHeader">
@@ -213,13 +220,6 @@
                     </div>
                         <img src="./assets/images/credits/DDD.png">
                 </div>
-                <div class="contributortile">
-                    <div class="contributorside">
-                        <p class="bolded contributoruser">TheCreationKing</p>
-                        <p class="contributordescription">Made the skin editor</p>
-                    </div>
-                        <img src="./assets/images/credits/TheCreationKing.png">
-                </div>
             </div>
         </div>
         <div id="credits">
@@ -242,6 +242,20 @@
                     </div>
                         <img src="./assets/images/icons/eaglercraft.png">
                 </div>
+                <div class="credittile">
+                    <div class="contributorside">
+                        <p class="bolded contributoruser">TheCreationKing</p>
+                        <p class="contributordescription">Made the skin editor</p>
+                    </div>
+                        <img src="./assets/images/credits/TheCreationKing.png">
+                </div>
+                <div class="credittile">
+                    <div class="contributorside">
+                        <p class="bolded contributoruser">StarlightGG</p>
+                        <p class="contributordescription">Made themes and more open game options (ported from GX Launcher)</p>
+                    </div>
+                        <img src="./assets/images/credits/StarlightGG.png">
+                </div>
             </div>
         </div>
         <div id="settings">
@@ -256,6 +270,21 @@
                 <div style="display: none;" class="settingoption"><input id="launchnewtab" class="settingsbox" type="checkbox" onchange="launchnewtab()"><p>Launch game in new window</p></div>
                 <div class="settingoption"><input id="stealthmode" class="settingsbox" type="checkbox" onchange="stealthmode()"><p>Stealth mode</p></div>
                 <input id="stealthinput" type="text" autocomplete="off" placeholder="https://docs.google.com" value="https://docs.google.com" onkeyup="if (event.key === 'Enter') stealthnamechange()">
+				<div class="settingoption"><input id="musicbtn" class="settingsbox" type="checkbox" onchange="togglemusic()"><p>Ambient music</p></div>
+                <p class="bolded settingstitle">APPEARANCE</p>
+                <p class="settingsdesc">Theme</p>
+                <div class="settingcards">
+                    <div class="settingcard compact" data-themename="default" onclick="settheme('default')"><span class="themedot" style="background: #008542;"></span><p class="bolded">Default</p></div>
+                    <div class="settingcard compact" data-themename="redstone" onclick="settheme('redstone')"><span class="themedot" style="background: #b02a2a;"></span><p class="bolded">Redstone</p></div>
+                    <div class="settingcard compact" data-themename="lapis" onclick="settheme('lapis')"><span class="themedot" style="background: #1f5fbf;"></span><p class="bolded">Lapis</p></div>
+                    <div class="settingcard compact" data-themename="amethyst" onclick="settheme('amethyst')"><span class="themedot" style="background: #7b3fb5;"></span><p class="bolded">Amethyst</p></div>
+                    <div class="settingcard compact" data-themename="gold" onclick="settheme('gold')"><span class="themedot" style="background: #b8860b;"></span><p class="bolded">Gold</p></div>
+                    <div class="settingcard compact" data-themename="midnight" onclick="settheme('midnight')"><span class="themedot" style="background: #2a6fb8;"></span><p class="bolded">Midnight</p></div>
+                    <div class="settingcard compact" data-themename="blood" onclick="settheme('blood')"><span class="themedot" style="background: #cc0000;"></span><p class="bolded">Blood</p></div>
+                    <div class="settingcard compact" data-themename="hacked" onclick="settheme('hacked')"><span class="themedot" style="background: #0a3502;"></span><p class="bolded">Hacked</p></div>
+                    <div class="settingcard compact" data-themename="nebula" onclick="settheme('nebula')"><span class="themedot" style="background: #220328;"></span><p class="bolded">Nebula</p></div>
+                </div>
+
                 <p class="bolded settingstitle">LAUNCHER USERNAME</p>
                 <input id="usernameinput" type="text" autocomplete="off" placeholder="Username" onkeyup="usernamechange()">
                 <p class="bolded settingstitle">EAGLER WEB EDITION SETTINGS</p>
@@ -275,8 +304,8 @@
                 </div>
                 <hr>
                 <p class="bolded settingstitle">UI</p>
-                <p class="settingsdetails">v1.6.11</p>
-                <p class="settingsdetails">November 18th, 2026</p>
+                <p class="settingsdetails">v1.6.2</p>
+                <p class="settingsdetails">November 21th, 2026</p>
                 <hr>
                 <p class="bolded settingstitle">LEGAL AND CREDITS</p>
                 <p class="settingsdetails">This application is not affiliated with Mojang.</p>

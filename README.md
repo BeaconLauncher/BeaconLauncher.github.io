@@ -4,8 +4,8 @@
  Containing some of the best clients all in one place!
 
 > [!IMPORTANT]
-> This website will soon move to [beaconlauncher.online](http://www.beaconlauncher.online) <br>
-> This will delete all your settings and worlds in Eaglercraft, so make sure to export your worlds.
+> This website is currently hosted at [beaconlauncher.online](http://www.beaconlauncher.online) <br>
+> The domain will change again in a year (November 18th 2027).
 
 <hr>
 

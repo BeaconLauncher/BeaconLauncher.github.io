@@ -7,6 +7,12 @@
 > This website is currently hosted at [beaconlauncher.online](http://www.beaconlauncher.online) <br>
 > The domain will change again in a year (November 18th 2027).
 
+> [!WARNING]
+> I used generative AI to assist with:
+> - the server list
+> - backend servers/workers
+> - porting features from StarlightGG
+
 <hr>
 
 <img src=".github/assets/launcher.png"><br>

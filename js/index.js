@@ -353,6 +353,96 @@ function newinstallation(data) {
     externalmenu.style.display = "flex";
 };
 
+function newpack(data) {
+    const installationscreenheader = document.createElement("div");
+    installationscreenheader.className = "bolded notescreenheader";
+    installationscreenheader.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" onclick="closenotescreen()"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>`
+    const installationscreenheadertitle = document.createElement("p");
+    installationscreenheadertitle.innerHTML = "Add your resource pack";
+    const installationscreenhr = document.createElement("hr");
+    const installationscreendetails = document.createElement("div");
+    installationscreendetails.className = "newinstallationdetails";
+
+    const installationscreennametitle = document.createElement("p");
+    installationscreennametitle.className = "bolded newinstallationheader";
+    installationscreennametitle.innerHTML = "NAME";
+    const installationscreenname = document.createElement("input");
+    installationscreenname.autocomplete = "off";
+    installationscreenname.type = "text";
+    installationscreenname.placeholder = "New Pack";
+    installationscreenname.id = "installationscreenname";
+    const installationscreenversion = document.createElement("p");
+    installationscreenversion.className = "bolded newinstallationheader";
+    installationscreenversion.innerHTML = "DESCRIPTION";
+	const installationscreendesc = document.createElement("input");
+    installationscreendesc.autocomplete = "off";
+    installationscreendesc.type = "text";
+    installationscreendesc.placeholder = "Pack Description";
+    const installationscreenlink = document.createElement("p");
+    installationscreenlink.className = "bolded newinstallationheader";
+    installationscreenlink.innerHTML = "LINK";
+	const installationscreenlinkinput = document.createElement("input");
+    installationscreenlinkinput.autocomplete = "off";
+    installationscreenlinkinput.type = "text";
+    installationscreenlinkinput.placeholder = "Pack Link";
+    const installationscreenfooter = document.createElement("div");
+    const notetext = document.createElement("p");
+    notetext.classList.add("settingsdesc")
+    notetext.innerHTML = "Please disclose the version and theme of your texture pack"
+    installationscreenfooter.className = "newinstallationfooter";
+    const installationscreenfooterhr = document.createElement("hr");
+    const installationscreenfooterbuttons = document.createElement("div");
+    installationscreenfooterbuttons.className = "newinstallationfooterbuttons";
+    console.log(installationscreendesc.value)
+    installationscreenfooterbuttons.innerHTML = `<div id="newinstallationcancel" class="classicbutton" onclick="closenotescreen();"><p class="bolded">Cancel</p></div><div id="newinstallationsave" class="greenbutton classicbutton" onclick="console.log(${installationscreendesc.value})"><p class="bolded">Save</p></div>`;
+    installationscreenheader.prepend(installationscreenheadertitle);
+    installationscreenfooter.appendChild(installationscreenfooterhr);
+    installationscreenfooter.appendChild(installationscreenfooterbuttons);
+    installationscreendetails.appendChild(installationscreennametitle);
+    installationscreendetails.appendChild(installationscreenname);
+    installationscreendetails.appendChild(installationscreenversion);
+    installationscreendetails.appendChild(installationscreendesc);
+    installationscreendetails.appendChild(installationscreenlink);
+    installationscreendetails.appendChild(installationscreenlinkinput);
+    installationscreendetails.appendChild(notetext);
+    externalmenu.appendChild(installationscreenheader);
+    externalmenu.appendChild(installationscreenhr);
+    externalmenu.appendChild(installationscreendetails);
+    externalmenu.appendChild(installationscreenfooter);
+    externalmenu.style.display = "flex";
+	document.querySelector("#newinstallationsave").addEventListener("click", () => {
+		fetchaddpack(installationscreenname.value, installationscreendesc.value, installationscreenlinkinput.value)
+	});
+};
+
+async function fetchaddpack(pack, desc, links) {
+  let link
+  if (/^https?:\/\//i.test(links.trim())) {
+	link = links.trim()
+  } else {
+	link = "https://" + links.trim()
+  }
+
+  const response = await fetch(
+    "https://resource-packs.dutchducksdevelopment.workers.dev/items",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        resource_pack: pack,
+        description: desc,
+        links: link,
+      }),
+    }
+  );
+
+  const result = await response.json();
+  console.log(response.status, result);
+  console.log(pack, desc);
+  closenotescreen();
+  return result;
+}
+
 function newinstallationsave(notsaving) {
     let customlaunchname = document.getElementById("installationscreenname").value;
     if (!customlaunchname) {customlaunchname = "New Installation";};
@@ -767,6 +857,9 @@ function generatedownloads() {
 
 const servers = document.getElementById("serversbox");
 function generateservers() {
+	document.getElementById("versionsremove").style.display = "flex";
+	document.getElementById("addpack").style.display = "none";
+	document.getElementById("hidebr").style.display = "none";
 	while (servers.firstChild) {servers.removeChild(servers.firstChild)};
     fetch("./assets/json/servers.json").then((response) => response.json()).then((data) => {
     	shuffle(data)
@@ -833,6 +926,74 @@ function generateservers() {
             serverdiv.appendChild(serverimg);
             serverdiv.appendChild(serverdetails);
             servers.appendChild(serverdiv);
+        });
+        if (onepointeight == false) { document.querySelectorAll('[data-server-type="1.8.8"]').forEach(element => {element.style.display = 'none'})};
+        if (onepointtwelve == false) { document.querySelectorAll('[data-server-type="1.12.2"]').forEach(element => {element.style.display = 'none'})};
+        if (other == false) { document.querySelectorAll('[data-server-type="other"]').forEach(element => {element.style.display = 'none'})};
+    });
+};
+function generatepacks() {
+	while (servers.firstChild) {servers.removeChild(servers.firstChild)};
+	document.getElementById("versionsremove").style.display = "none";
+	document.getElementById("addpack").style.display = "flex";
+	document.getElementById("hidebr").style.display = "flex";
+    fetch("https://resource-packs.dutchducksdevelopment.workers.dev/items").then((response) => response.json()).then((data) => {
+    	shuffle(data)
+        data.forEach((server) => {
+            const serverdiv = document.createElement("div");
+            serverdiv.className = "server";
+            serverdiv.addEventListener("click", () => {
+                const serverscreenheader = document.createElement("div");
+                serverscreenheader.className = "bolded serverscreenheader";
+                serverscreenheader.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" onclick="closeserverscreen()"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>`
+                const serverscreenheadertitle = document.createElement("p");
+                serverscreenheadertitle.innerHTML = "Resource Pack " + server.resource_pack
+                const serverscreenhr = document.createElement("hr");
+
+                const serverscreendetails = document.createElement("div");
+                serverscreendetails.className = "serverscreendetails";
+                const serverscreendescription = document.createElement("p");
+                serverscreendescription.className = "bolded serverscreenheader";
+                serverscreendescription.innerHTML = server.description;
+				const copyipbutton = document.createElement("div");
+				copyipbutton.className = "copyipbutton";
+				copyipbutton.onclick = () => window.open(server.links, "_blank", "noopener,noreferrer")
+                const text = document.createElement("p");
+                text.className = "bolded";
+                text.innerHTML = "Download";
+                let colors = ["archyverse.png", "carrotcraft.png", "clans.png", "galacticpvp.png", "heartsmp.png", "jaxxmc.png", "skeletonmc.png", "vanilla.png"]
+                const logoimgdiv = document.createElement("div");
+                logoimgdiv.className = "logoimgdiv";
+                const logoimg = document.createElement("img");
+                logoimg.className = "logoimg"
+                logoimg.src = "./assets/images/server-icons/" + shuffle2(colors)[1]
+
+                serverscreenheader.prepend(serverscreenheadertitle);
+                serverscreendetails.appendChild(serverscreendescription);
+                copyipbutton.appendChild(text);
+                logoimgdiv.appendChild(logoimg);
+                externalmenu.appendChild(serverscreenheader);
+                externalmenu.appendChild(copyipbutton);
+                externalmenu.appendChild(serverscreenhr);
+                externalmenu.appendChild(serverscreendetails);
+                externalmenu.style.display = "flex";
+            });
+			let colors = ["archyverse.png", "carrotcraft.png", "clans.png", "galacticpvp.png", "heartsmp.png", "jaxxmc.png", "skeletonmc.png", "vanilla.png"]
+            const serverimg = document.createElement("img");
+            serverimg.src = "./assets/images/server-icons/" + shuffle2(colors)[1];
+
+            const serverdetails = document.createElement("div");
+            serverdetails.className = "bolded serverdetails";
+            const serverdetailtitle = document.createElement("p");
+            serverdetailtitle.innerHTML = server.resource_pack;
+			
+			
+            serverdiv.appendChild(serverimg);
+            serverdetails.appendChild(serverdetailtitle);
+            serverdiv.appendChild(serverdetails);
+            servers.appendChild(serverdiv);
+            
+            
         });
         if (onepointeight == false) { document.querySelectorAll('[data-server-type="1.8.8"]').forEach(element => {element.style.display = 'none'})};
         if (onepointtwelve == false) { document.querySelectorAll('[data-server-type="1.12.2"]').forEach(element => {element.style.display = 'none'})};
@@ -949,9 +1110,10 @@ if (!localStorage.getItem("startupprofile")) {
 if (localStorage.getItem("startupprofile") === "1") {webedition()};
 if (localStorage.getItem("startupprofile") === "2") {moddededition()};
 if (localStorage.getItem("startupprofile") === "3") {eaglercontrols()};
+if (localStorage.getItem("startupprofile") === "6") {serversmenu()};
 if (localStorage.getItem("startupprofile") === "4") {creditsmenu()};
 if (localStorage.getItem("startupprofile") === "5") {settingsmenu()};
-if (localStorage.getItem("startupprofile") === "6") {serversmenu()};
+if (localStorage.getItem("startupprofile") === "7") {packsmenu()};
 
 
 function webedition(){
@@ -973,6 +1135,7 @@ function webedition(){
     document.getElementById('header9').style.display = 'none';
     document.getElementById('header10').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
+    document.getElementById('header14').style.display = 'none';
     document.getElementById('gtabs2').classList.add('selected');
     playheader();
 }
@@ -994,6 +1157,7 @@ function moddededition(){
     document.getElementById('header9').style.display = 'none';
     document.getElementById('header10').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
+    document.getElementById('header14').style.display = 'none';
     document.getElementById('gtabs3').classList.add('selected');
     playheader();
 }
@@ -1017,6 +1181,7 @@ function eaglercontrols(){
     document.getElementById('header10').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
     document.getElementById('header12').style.display = 'none';
+    document.getElementById('header14').style.display = 'none';
     document.getElementById('gtabs4').classList.add('selected');
     playheader();
 }
@@ -1036,8 +1201,29 @@ function serversmenu(){
     document.getElementById('header10').style.display = 'none';
     document.getElementById('header12').style.display = 'none';
     document.getElementById('header13').style.display = 'none';
+    document.getElementById('header14').style.display = 'none';
     document.getElementById('gtabs7').classList.add('selected');
     serversheader();
+}
+function packsmenu(){
+    localStorage.setItem("startupprofile", "7");
+    resetTabSelected();
+    document.getElementById('gameedition').innerHTML = 'Packs';
+    document.getElementById('header1').style.display = 'none';
+    document.getElementById('header2').style.display = 'none';
+    document.getElementById('header3').style.display = 'none';
+    document.getElementById('header4').style.display = 'none';
+    document.getElementById('header5').style.display = 'none';
+    document.getElementById('header6').style.display = 'none';
+    document.getElementById('header7').style.display = 'none';
+    document.getElementById('header8').style.display = 'none';
+    document.getElementById('header9').style.display = 'none';
+    document.getElementById('header10').style.display = 'none';
+    document.getElementById('header11').style.display = 'none';
+    document.getElementById('header12').style.display = 'none';
+    document.getElementById('header13').style.display = 'none';
+    document.getElementById('gtabs8').classList.add('selected');
+    packsheader();
 }
 function creditsmenu(){
     localStorage.setItem("startupprofile", "4");
@@ -1054,6 +1240,7 @@ function creditsmenu(){
     document.getElementById('header12').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
     document.getElementById('header13').style.display = 'none';
+    document.getElementById('header14').style.display = 'none';
     document.getElementById('gtabs5').classList.add('selected');
     contributorsheader();
 }
@@ -1072,6 +1259,7 @@ function settingsmenu(){
     document.getElementById('header13').style.display = 'none';
     document.getElementById('header8').style.display = 'none';
     document.getElementById('header11').style.display = 'none';
+    document.getElementById('header14').style.display = 'none';
     document.getElementById('gtabs6').classList.add('selected');
     generalsettingsheader();
 }
@@ -1133,6 +1321,14 @@ function serversheader(){
     document.getElementById('servers').style.display = "flex";
     document.getElementById('header11').classList.add('selected');
 }
+function packsheader(){
+	localStorage.setItem("header", "packs")
+    resetHeaderSelected();
+	generatepacks();
+    document.getElementById('servers').style.display = "flex";
+    document.getElementById('header14').style.display = "flex";
+    document.getElementById('header14').classList.add('selected');
+}
 function contributorsheader(){
 	localStorage.setItem("header", "contributors")
     resetHeaderSelected();
@@ -1183,7 +1379,7 @@ function dropdowntoggle(){
 function resetTabSelected() {
     while (dropdown.firstChild) {dropdown.removeChild(dropdown.firstChild)};
     while (installations.firstChild) {installations.removeChild(installations.firstChild)};
-    for (var i = 1; i < 8; i++) { 
+    for (var i = 1; i < 9; i++) { 
         let gtabs = document.getElementById('gtabs' + [i]);
         gtabs.classList.remove('selected');
     };
@@ -1193,13 +1389,14 @@ function resetTabSelected() {
     };
     document.getElementById('settings').style.display = "none";
     document.getElementById('servers').style.display = "none";
+    document.getElementById('externalmenu').style.display = "none";
 }
 
 function resetHeaderSelected() {
     while (dropdown.firstChild) {dropdown.removeChild(dropdown.firstChild)};
     while (mods.firstChild) {mods.removeChild(mods.firstChild)};
     while (notes.firstChild) {notes.removeChild(notes.firstChild)};
-    for (var i = 1; i < 14; i++) { 
+    for (var i = 1; i < 15; i++) { 
         let headers = document.getElementById('header' + [i]);
         headers.classList.remove('selected'); 
     };
@@ -1454,4 +1651,7 @@ if (selectedHeader) {
 	window[name]();
 }
 
+closenotescreen();
+closeserverscreen();
+closedownloadsscreen();
 generatefaqs();

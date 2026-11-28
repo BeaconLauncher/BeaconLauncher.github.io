@@ -1,11 +1,23 @@
 [  	
 	{
         "title": "Site update: Ambient music and more settings",
+        "version": "v1.6.3",
+        "description": "Added a resource pack menu where you can upload your own packs",
+        "date": "November 28th, 2026",
+        "icon": "/sidebar/i-live.png",
+        "type": "site",
+        "notes": [
+            "Added a tab for resource packs where you can download and upload texture packs",
+            "Removed herobrine"
+        ]
+    },
+	{
+        "title": "Site update: Ambient music and more settings",
         "version": "v1.6.2",
         "description": "Added ambient Minecraft music in the launcher and added 2 new themes",
         "date": "November 21th, 2026",
         "icon": "/mc-icons/jukebox.png",
-        "type": "hotfix",
+        "type": "site",
         "notes": [
             "Added ambient Minecraft music in the launcher",
             "Added a black-green theme called Hacked and a dark purple theme called nebula",

@@ -92,13 +92,20 @@
                 <p>Servers </p>
             </div>
 		</div>
+		<div onclick="packsmenu()" id="gtabs8" class="sidebarOptions">
+            <img src="./assets/images/sidebar/i-live.png">
+            <div class="gTabsText">
+                <p class="eaglercraftText"> EAGLERCRAFT : </p>
+                <p>Resource Packs </p>
+            </div>
+		</div>
         <div id="gtabs5" class="sidebarOptions sidebarBottom" onclick="creditsmenu()">
             <img src="./assets/images/sidebar/m-credits.png"><div class="gTabsText"><p> Credits</p></div>
         </div>
         <div id="gtabs6" class="sidebarOptions sidebarBottom" onclick="settingsmenu()">
             <img src="./assets/images/sidebar/m-settings.png"><div class="gTabsText"><p> Settings</p></div>
         </div>
-        <div class="launcherVersion"><p>v1.6.2</p></div>
+        <div class="launcherVersion"><p>v1.6.3</p></div>
     </div>
     <div class="mainPage">
         <div class="gameHeader">
@@ -117,6 +124,7 @@
                     <li id="header10" class="headerButtons" onclick="aboutsettingsheader()">About</li>
                     <li id="header11" class="headerButtons" onclick="serversheader()">Server List</li>
                     <li id="header12" class="headerButtons" onclick="downloadsheader()">Downloads</li>
+					<li id="header14" class="headerButtons" onclick="packsheader()">Resource Pack List</li>
                 </ul>
         </div>
 
@@ -187,9 +195,12 @@
         <div id="servers">
             <div style="padding: 2vh 3vw 7vh;">
                 <p class="bolded servers-title"></p>
-                <div class="versionscontainerserver">
+                <div id="versionsremove" class="versionscontainerserver">
                     <input class="versionBox" type="checkbox" onchange="sortserver('1.8.8')" checked><p>1.8.8</p><input class="versionBox" type="checkbox" onchange="sortserver('1.12.2')" checked><p>1.12.2</p><input class="versionBox" type="checkbox" onchange="sortserver('other')" checked><p>Other</p>
                 </div>
+                <div class="classicbutton" id="addpack" onclick="newpack()">
+					<p class="bolded">Add a resource pack</p>
+	            </div> <br id="hidebr">
                 <hr>
                 <div id="serversbox"></div>
             </div>
@@ -311,8 +322,8 @@
                 </div>
                 <hr>
                 <p class="bolded settingstitle">UI</p>
-                <p class="settingsdetails">v1.6.2</p>
-                <p class="settingsdetails">November 21th, 2026</p>
+                <p class="settingsdetails">v1.6.3</p>
+                <p class="settingsdetails">November 28th, 2026</p>
                 <hr>
                 <p class="bolded settingstitle">LEGAL AND CREDITS</p>
                 <p class="settingsdetails">This website is not affiliated with Mojang.</p>
